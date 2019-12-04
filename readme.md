@@ -1,4 +1,4 @@
-# Book App
+# Space Invaders
 
 **Author**: Noah Rhodes, James Ruhashyankiko, Shubham Majumdar, Roman Sydoruk
 
@@ -11,10 +11,11 @@ The initial goal of this project is to display some cool data on asteroid and co
 
 
 ## Architecture
-This backend has been develeoped using Javascript with the following dependencies, on the node.js framework:
+This backend has been developed using Javascript with the following dependencies, on the node.js framework:
 "express": "^4.17.1"
 "superagent": "^5.1.0"
 "ejs": "^2.7.4"
+"dotenv": "^8.2.0"
 
 
 
