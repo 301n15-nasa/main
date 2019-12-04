@@ -1,0 +1,28 @@
+{
+  "name": "main",
+  "version": "1.0.0",
+  "description": "**Author**: Noah Rhodes, James Ruhashyankiko, Shubham Majumdar, Roman Sydoruk",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/301n15-nasa/main.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/301n15-nasa/main/issues"
+  },
+  "homepage": "https://github.com/301n15-nasa/main#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "pg": "^7.14.0",
+    "superagent": "^5.1.2"
+  }
+}
