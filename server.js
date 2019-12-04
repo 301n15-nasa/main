@@ -11,7 +11,11 @@ app.set('view engine', 'ejs');
 app.use(express.static('public')); 
 app.use(express.urlencoded({extended:true}));
 
-app.get('/',searchAPI);
+app.get('/', (req, res) => {
+  res.status(200).render('pages/index');
+});
+// searches route
+app.post('/searches', searchAPI); 
 
 async function searchAPI(req, res){
   console.log('we got it');
@@ -23,7 +27,7 @@ async function searchAPI(req, res){
     let result = await superagent.get(url);
     let asteroidArray = result.near_earth_objects[formatted_date].map(asteroid => new Asteroid(asteroid));
     console.log(asteroidArray);
-    res.render('pages/index', {results:asteroidArray});
+    res.render('pages/searches', {results:asteroidArray});
   }
   catch{
     //if something goes wrong, say something.
