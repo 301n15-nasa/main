@@ -1,6 +1,6 @@
 # Book App
 
-**Author**: Noah Rhodes, Diana Kim
+**Author**: Noah Rhodes, James Ruhashyankiko, Shubham Majumdar, Roman Sydoruk
 
 **Version**: 1.0
 
