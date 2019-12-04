@@ -1,12 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <% include ../partials/head %>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../../styles/reset.css">
+  <link rel="stylesheet" href="../../styles/base.css">
+  <link rel="stylesheet" href="../../styles/layout.css">
+  <link rel="stylesheet" href="../../styles/modules.css">
+  <link rel="stylesheet" href="../../styles/icons.css">
+  <link rel="stylesheet" href="../../styles/state.css">
   <title>Search</title>
 </head>
 <body>
   <header>
-    <% include ../partials/header %>
+    <h1>SEARCH ASTEROIDS</h1>
+<nav>
+    <ul>
+      <li><a href="../../">Home</a></li>
+      <li><a href="/searches">Search the Asteroids - NeoWs API</a></li>
+    </ul>
+</nav>
+<span id="ham-icon" class="icon fa-bars"></span>
     <h2>Search by start/end date</h2>
   </header>
   <main>
@@ -17,7 +32,6 @@
     </form>
   </main>
   <footer>
-      <% include ../partials/footer %>
   </footer>
 </body>
 </html>
