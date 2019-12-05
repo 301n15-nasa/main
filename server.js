@@ -11,18 +11,24 @@ app.use(cors());
 app.use(express.static('public')); 
 app.use(express.urlencoded({extended:true}));
 app.set('view engine', 'ejs');
-
+app.get('/', displayAsteroid);
 app.get('/', (req, res) => {
   res.status(200).render('pages/index');
 });
+
+
+
 // searches route
 app.post('/searches', searchAPI); 
+
+
 
 async function searchAPI(req, res){
   let url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${req.body.startdate}&end_date=${req.body.enddate}&api_key=${process.env.ASTEROID_KEY}`;
   try{
     let result = await superagent.get(url);
     let dates = Object.keys(result.body.near_earth_objects);
+    console.log()
     let asteroidArray = [];
     dates.forEach(element => {
       let tempArr = result.body.near_earth_objects[element].map(asteroid => new Asteroid(asteroid));
@@ -35,6 +41,24 @@ async function searchAPI(req, res){
       errorHandler(`Something has gone amiss!`, req, res);
   }
 }
+
+//display asteroids from DB on index page
+function displayAsteroid(req, res) {
+ 
+  let SQL = 'Select * FROM asteroid;';
+  return client.query(SQL)
+  .then(results => {
+    if (results.rows.rowCount === 0) {
+      errorHandler(`No data`, req, res);
+    } else {
+      console.log(results.rows);
+      res.render('pages/index', {asteroid: results.rows});
+      
+    }
+  })
+  .catch(err => errorHandler(err, res));
+}
+  
 
 function Asteroid (asteroid){
   this.date = asteroid.close_approach_data[0].close_approach_date;
