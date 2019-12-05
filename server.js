@@ -38,12 +38,13 @@ async function searchAPI(req, res){
 
 function Asteroid (asteroid){
   this.date = asteroid.close_approach_data[0].close_approach_date;
-  this.jpl_link = asteroid.nasa_jpl_url;
+  this.jpl_link = asteroid.nasa_jpl_url+';old=0;orb=1;cov=0;log=0;cad=0#orb';
   this.diameter_meters = asteroid.estimated_diameter.meters.estimated_diameter_max;
   this.diameter_feet = asteroid.estimated_diameter.feet.estimated_diameter_max;
   this.potentially_hazardous = asteroid.is_potentially_hazardous_asteroid;
   this.relative_velocity_kmh = asteroid.close_approach_data[0].relative_velocity.kilometers_per_hour;
-  this.relative_velocity_mph = asteroid.close_approach_data[0].relative_velocity.miles_per_hour
+  this.relative_velocity_mph = asteroid.close_approach_data[0].relative_velocity.miles_per_hour;
+
 }
 
 function errorHandler(error, req, res) {
