@@ -5,11 +5,13 @@ const app = express();
 const superagent = require('superagent');
 require('dotenv').config();
 const pg = require('pg');
+const cors = require('cors');
 const client = new pg.Client(process.env.DATABASE_URL);
 const PORT = process.env.PORT || 3000;
-app.set('view engine', 'ejs');  
+app.use(cors());
 app.use(express.static('public')); 
 app.use(express.urlencoded({extended:true}));
+app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
   res.status(200).render('pages/index');
