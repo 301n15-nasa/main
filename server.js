@@ -19,14 +19,15 @@ app.get('/', (req, res) => {
 app.post('/searches', searchAPI); 
 
 async function searchAPI(req, res){
-  let current_datetime = new Date();
-  let formatted_date = current_datetime.getFullYear() + "-" + ('0'+(current_datetime.getMonth() + 1)).slice(-2) + "-" + ('0'+current_datetime.getDate()).slice(-2);
-  let url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${formatted_date}&end_date=${formatted_date}&api_key=${process.env.ASTEROID_KEY}`;
+  let url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${req.body.startdate}&end_date=${req.body.enddate}&api_key=${process.env.ASTEROID_KEY}`;
   try{
-    console.log('in the try-catch');
     let result = await superagent.get(url);
-    let asteroidArray = result.body.near_earth_objects[formatted_date].map(asteroid => new Asteroid(asteroid));
-    console.log(asteroidArray);
+    let dates = Object.keys(result.body.near_earth_objects);
+    let asteroidArray = [];
+    dates.forEach(element => {
+      let tempArr = result.body.near_earth_objects[element].map(asteroid => new Asteroid(asteroid));
+      tempArr.forEach(element => asteroidArray.push(element));
+    });
     res.render('pages/searches', {results:asteroidArray});
   }
   catch{
