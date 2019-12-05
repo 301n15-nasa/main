@@ -11,8 +11,8 @@ app.use(cors());
 app.use(express.static('public')); 
 app.use(express.urlencoded({extended:true}));
 app.set('view engine', 'ejs');
-app.get('/', displayAsteroid);
 app.get('/', (req, res) => {
+  app.get('/', displayAsteroid);
   res.status(200).render('pages/index');
 });
 
@@ -44,8 +44,7 @@ async function searchAPI(req, res){
 
 //display asteroids from DB on index page
 function displayAsteroid(req, res) {
- 
-  let SQL = 'Select * FROM asteroid;';
+   let SQL = 'Select * FROM asteroid;';
   return client.query(SQL)
   .then(results => {
     if (results.rows.rowCount === 0) {
