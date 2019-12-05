@@ -12,11 +12,28 @@ app.use(express.static('public'));
 app.use(express.urlencoded({extended:true}));
 app.set('view engine', 'ejs');
 
+client.connect();
+
+app.get('/', getAsteroid);
+
 app.get('/', (req, res) => {
   res.status(200).render('pages/index');
 });
+
 // searches route
 app.post('/searches', searchAPI); 
+
+function getAsteroid(req, res) {
+  let sql = 'SELECT * FROM asteroid;';
+  return client.query(sql)
+    .then(response => {
+      if (response.rowCount > 0) {
+        res.render('pages/index', { allAsteroids: response.rows });
+      }
+    });
+}
+
+
 
 async function searchAPI(req, res){
   let url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${req.body.startdate}&end_date=${req.body.enddate}&api_key=${process.env.ASTEROID_KEY}`;
@@ -34,6 +51,15 @@ async function searchAPI(req, res){
     //if something goes wrong, say something.
       errorHandler(`Something has gone amiss!`, req, res);
   }
+}
+function getAsteroid(req, res) {
+  let sql = 'SELECT * FROM asteroid;';
+  return client.query(sql)
+  .then( response => {
+      if (response.rowCount > 0 ) {
+          res.render('index', {allTasks: response.rows});
+      }
+  })
 }
 
 function Asteroid (asteroid){

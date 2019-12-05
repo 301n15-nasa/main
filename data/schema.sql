@@ -12,4 +12,4 @@ CREATE TABLE asteroid (
     relative_velocity_mph text
 );
 
-INSERT INTO asteroid (date_to_earth, nasa_jpl_url, estimated_diameter_meters, estimated_diameter_feet, is_potentially_hazardous_asteroid, close_approach_date, relative_velocity_kmh, relative_velocity_mph,) VALUES("2019-12-04", "https://ssd.jpl.nasa.gov/sbdb.cgi?sstr=3893864;old=0;orb=1;cov=0;log=0;cad=0#orb", "33.4996275663", "109.90", false, "2019-12-04", "20154.84", "12523.43")
+INSERT INTO asteroid (date_to_earth, nasa_jpl_url, estimated_diameter_meters, estimated_diameter_feet, is_potentially_hazardous_asteroid, close_approach_date, relative_velocity_kmh, relative_velocity_mph) VALUES('2019-12-04', 'https://ssd.jpl.nasa.gov/sbdb.cgi?sstr=3893864;old=0;orb=1;cov=0;log=0;cad=0#orb', '33.4996275663', '109.90', false, '2019-12-04', '20154.84', '12523.43');

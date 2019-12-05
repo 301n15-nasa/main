@@ -15,6 +15,18 @@
       <input type="date" size="12" required pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="dd/mm/yyyy" name="enddate">
       <button type="submit">Search</button>
     </form>
+    <ul>
+      <% allAsteroids.forEach(books =>{ %>
+      <p class =''> Date to Earth: <%= asteroid.date_to_earth %></p>
+      <p class=''> NASA Url: <%= asteroid.nasa_jpl_url %></p>
+      <p class =''> Asteroid Diameter in meters: <%= asteroid.estimated_diameter_meters %></p>
+      <p class =''> Asteroid Diameter in feet: <%= asteroid.estimated_diameter_meters %></p>
+      <p class=''> Is potentially hazardous: <%= asteroid.is_potentially_hazardous_asteroid %></p>
+      <p class=''> Close approach date: <%= asteroid.close_approach_date %></p>
+      <p class=''> Relative velocity in Km/Hr: <%= asteroid.relative_velocity_kmh %></p>
+      <p class=''> Relative velocity in Mi/Hr: <%= asteroid.relative_velocity_mph %></p>
+      <%});%>
+  </ul>
   </main>
   <footer>
   </footer>
