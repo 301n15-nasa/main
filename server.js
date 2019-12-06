@@ -14,25 +14,15 @@ app.set('view engine', 'ejs');
 
 client.connect();
 
-app.get('/', getAsteroid);
+app.get('/', showSavedAsteroids);
 
-app.get('/', (req, res) => {
-  res.status(200).render('pages/index');
+app.get('/searches', (req, res) => {
+  res.status(200).render('pages/searches/new');
 });
 
 // searches route
 app.post('/searches', searchAPI); 
-
-function getAsteroid(req, res) {
-  let sql = 'SELECT * FROM asteroid;';
-  return client.query(sql)
-    .then(response => {
-      if (response.rowCount > 0) {
-        res.render('pages/index', { allAsteroids: response.rows });
-      }
-    });
-}
-
+app.post('/asteroids', saveToDatabase);
 
 
 async function searchAPI(req, res){
@@ -45,31 +35,51 @@ async function searchAPI(req, res){
       let tempArr = result.body.near_earth_objects[element].map(asteroid => new Asteroid(asteroid));
       tempArr.forEach(element => asteroidArray.push(element));
     });
-    res.render('pages/searches', {results:asteroidArray});
+    res.render('pages/searches/show', {results:asteroidArray});
   }
   catch{
     //if something goes wrong, say something.
       errorHandler(`Something has gone amiss!`, req, res);
   }
 }
-function getAsteroid(req, res) {
+
+// Showing saved asteroid from database on page load
+async function showSavedAsteroids(req, res) {
   let sql = 'SELECT * FROM asteroid;';
-  return client.query(sql)
-  .then( response => {
-      if (response.rowCount > 0 ) {
-          res.render('index', {allTasks: response.rows});
-      }
-  })
-}
+  try {
+    let result = await client.query(sql);
+    res.status(200).render('pages/index', { sqlResults: result.rows });
+  } catch(err) {
+    errorHandler(err, req, res);
+  }
+};
+
+// Saving selected asteroid into database
+async function saveToDatabase(req, res) {
+  const r = req.body;
+  console.log(req.body)
+  let sql = 'INSERT INTO asteroid (date, link, meters, feet, hazardous, kmh, mph) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id;';
+  try {
+    let result = await client.query(sql, [r.date, r.link, r.meters, r.feet, r.hazardous, r.kmh, r.mph]);
+    sql = 'SELECT * FROM asteroid WHERE id=$1;';
+    let id = result.rows[0].id;
+    console.log(id);
+    result = await client.query(sql, [id]);
+    console.log(result);
+    res.status(200).redirect('/');
+  } catch(err) {
+    errorHandler(err, req, res);
+  }
+};
 
 function Asteroid (asteroid){
   this.date = asteroid.close_approach_data[0].close_approach_date;
-  this.jpl_link = asteroid.nasa_jpl_url+';old=0;orb=1;cov=0;log=0;cad=0#orb';
-  this.diameter_meters = asteroid.estimated_diameter.meters.estimated_diameter_max;
-  this.diameter_feet = asteroid.estimated_diameter.feet.estimated_diameter_max;
-  this.potentially_hazardous = asteroid.is_potentially_hazardous_asteroid;
-  this.relative_velocity_kmh = asteroid.close_approach_data[0].relative_velocity.kilometers_per_hour;
-  this.relative_velocity_mph = asteroid.close_approach_data[0].relative_velocity.miles_per_hour;
+  this.link = asteroid.nasa_jpl_url+';old=0;orb=1;cov=0;log=0;cad=0#orb';
+  this.meters = asteroid.estimated_diameter.meters.estimated_diameter_max;
+  this.feet = asteroid.estimated_diameter.feet.estimated_diameter_max;
+  this.hazardous = asteroid.is_potentially_hazardous_asteroid;
+  this.kmh = asteroid.close_approach_data[0].relative_velocity.kilometers_per_hour;
+  this.mph = asteroid.close_approach_data[0].relative_velocity.miles_per_hour;
 
 }
 
