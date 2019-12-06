@@ -13,9 +13,7 @@
     <section class="asteroids">
       <% if(sqlResults) { %>
         <% sqlResults.forEach( asteroid => { %>
-          <h3> <%= asteroid.date; %> </h3>
-          <h4> <%= asteroid.link; %> </h4>
-          <p ><%= asteroid.meters; %> </p>
+          <%- include('./asteroids/detail', {show: false, asteroid: asteroid} ) %>
         <% }); %>
       <% } else { %>
         <div class="flex-column">

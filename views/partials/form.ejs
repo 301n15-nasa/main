@@ -1,0 +1,14 @@
+<form class="edit-form flex-column" action= <%= type === 'update' ? `/asteroids/${asteroid.id}` : '/asteroids/' %> method="POST">
+  <input type="hidden" name="_method" value="<%= type === 'update' ? 'put' : 'post' %>">
+  <input type="hidden" name="id" value="<%= asteroid.id %>">
+  <div>
+    <input type="text" name="date" placeholder="Date" value="<%= asteroid.date %>" required>
+    <input type="text" name="link" placeholder="Link" value="<%= asteroid.link %>" required>
+    <input type="text" name="meters" placeholder="meters" value="<%= asteroid.meters %>" required>
+    <input type="text" name="feet" placeholder="feet" value="<%= asteroid.feet %>" required>
+    <input type="text" name="hazardous" placeholder="hazardous" value="<%= asteroid.hazardous %>" required>
+    <input type="text" name="kmh" placeholder="kmh" value="<%= asteroid.kmh %>" required>
+    <input type="text" name="mph" placeholder="mph" value="<%= asteroid.mph %>" required>
+  </div>
+  <button type="submit" class="button narrow"> <%= type === 'search' ?'Add to Database' : 'Update Data' %></button>
+</form>

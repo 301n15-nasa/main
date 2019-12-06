@@ -10,25 +10,19 @@
     </header>
     <h1>ASTEROIDS</h1>
     <main>
-      <section class="asteroid">
+      <section class="asteroids">
         <% if(results) { %>
           <% results.forEach( asteroid => { %>
             <div class="asteroid flex-column">
               <h3> <%= asteroid.date; %> </h3>
               <h4> <%= asteroid.link; %> </h4>
               <p><%= asteroid.meters; %> </p>
-              <form class="edit-form" action="/asteroids" method="POST">
-                <div class="show-hide">
-                  <input type="text" name="date" placeholder="Date" value="<%= asteroid.date %>" required>
-                  <input type="text" name="link" placeholder="Link" value="<%= asteroid.link %>" required>
-                  <input type="text" name="meters" placeholder="meters" value="<%= asteroid.meters %>" required>
-                  <input type="text" name="feet" placeholder="feet" value="<%= asteroid.feet %>" required>
-                  <input type="text" name="hazardous" placeholder="hazardous" value="<%= asteroid.hazardous %>" required>
-                  <input type="text" name="kmh" placeholder="kmh" value="<%= asteroid.kmh %>" required>
-                  <input type="text" name="mph" placeholder="mph" value="<%= asteroid.mph %>" required>
+              <button class="select button">Select This Asteroid</button>
+              <div class="modal">
+                <div class="asteroid">
+                  <%- include('../../partials/form', { type: 'search', asteroid: asteroid}) %>
                 </div>
-                <button type="submit" class="select-button">Select This Asteroid</button>
-              </form>
+              </div>
             </div>
           <% }); %>
         <% } else { %>
@@ -44,5 +38,6 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
     </script>
     <script src="../../js/menu.js"></script>
+    <script src="../../js/app.js"></script>
   </body>
 </html>

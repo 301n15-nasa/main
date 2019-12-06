@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!-- show -->
+<html lang="en">
+<head>
+  <%- include ('../../partials/head') %>
+  <title>NASA ASTEROIDS API</title>
+</head>
+<body>
+  <header>
+    <%- include ('../../partials/header') %>
+    <h2>Details</h2>
+  </header>
+  <main>
+    <section class="asteroidss">
+      <%- include('./detail', { show: true }) %>
+      <%- include('./edit') %>
+    </section>
+  </main>
+  <footer>
+    <%- include ('../../partials/footer') %>
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
+  </script>
+  <script src="../../js/menu.js"></script>
+  <script src="../../js/edit.js"></script>
+</body>
+</html>
