@@ -103,6 +103,7 @@ form {
   align-items: center;
   margin: 0 2rem;
 }
+
 form > input {
   box-sizing: border-box;
   width: 30%;
@@ -112,6 +113,17 @@ form > input {
   padding: 0.5rem;
   background: white;
 }
+div > input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 3.5rem;
+  margin-top: 1rem;
+  border-radius: 3px;
+  border: none;
+  padding: 0.5rem;
+  background: white;
+}
+
 form button{
   margin-top: 1.5rem;
   border-radius: 200px;
@@ -122,4 +134,46 @@ form button{
   background-color: #00b894;
   border: 2px solid #009679;
   transition: background-color 0.2s, border 0.2s, color 0.2s;
+}
+
+/* MODAL START */
+.modal {
+  display: none; 
+  position: fixed;
+  z-index: 5; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto;
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+/* MODAL END */
+
+.asteroids {
+  width: 100%;
+}
+
+.asteroid {
+  background: #d9d9d9;
+  margin: 2rem;
+  padding: 2rem 1.5rem;
+  border-radius: 3px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.6);
+  text-align: center;
+}
+
+.asteroid button {
+  margin-top: 1.5rem;
+  border-radius: 200px;
+  padding: .8rem 1rem;
+  font-weight: 300;
+  font-size: 1.2rem;
+  border: 1px solid rgb(182, 178, 178);
+  background-color: white;
+}
+
+.narrow, #delete {
+  color: black;
 }
