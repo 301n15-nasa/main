@@ -45,5 +45,4 @@ app.delete('/asteroids/:asteroid_id', deleteAsteroid);
 
 app.get('*', (req, res) => res.status(404).render('pages/err/error404'));
 
-
 app.listen(PORT, () => console.log(`server running up on port ${PORT}`));
