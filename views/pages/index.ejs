@@ -10,7 +10,7 @@
   </header>
   <h2>Saved <%= sqlResults.length %> asteroids</h2>
   <main>
-    <section class="asteroids">
+    <section class="asteroids saved">
       <% if(sqlResults) { %>
         <% sqlResults.forEach( asteroid => { %>
           <%- include('./asteroids/detail', {show: false, asteroid: asteroid} ) %>

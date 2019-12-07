@@ -1,0 +1,11 @@
+.nav a.item:hover {
+	color: #fff;
+	background-color: #3fabfd;
+	transition: 0.4s;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #3fabfd;
+  color: white;
+}

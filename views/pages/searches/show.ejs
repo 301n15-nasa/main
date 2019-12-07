@@ -14,9 +14,9 @@
         <% if(results) { %>
           <% results.forEach( asteroid => { %>
             <div class="asteroid flex-column">
-              <h3> <%= asteroid.date; %> </h3>
-              <h4> <%= asteroid.link; %> </h4>
-              <p><%= asteroid.meters; %> </p>
+              <h3> <span class="show">Date: </span><%= asteroid.date; %> </h3>
+              <h4> <span class="show">Diameter: </span><%= asteroid.meters; %> meters (<%= asteroid.feet; %> feet)  </h4>
+              <p> <span class="show">Hazardous: </span><%= asteroid.hazardous; %> </p>
               <button class="select button">Select This Asteroid</button>
               <div class="modal">
                 <div class="asteroid">
