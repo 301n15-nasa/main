@@ -10,14 +10,12 @@
   </header>
   <main>
     <h2>Search by start/end date</h2>
-    <form action="/searches" method="POST">
-      <input type="date" size="12" required pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="dd/mm/yyyy" name="startdate">
-      <input type="date" size="12" required pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="dd/mm/yyyy" name="enddate">
+    <form id="new-search" action="/searches" method="POST">
+      <input id="startdate" type="date" size="12" required pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="dd/mm/yyyy" name="startdate">
+      <input  id="enddate" type="date" size="12" required pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="dd/mm/yyyy" name="enddate">
       <button type="submit">Search</button>
     </form>
   </main>
-  <footer>
-  </footer>
   <footer>
     <%- include ('../../partials/footer') %>
   </footer>

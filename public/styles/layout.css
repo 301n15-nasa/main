@@ -1,3 +1,10 @@
+h1{
+  text-align: center;
+  font-size: 1.7rem;
+  color: rgb(121, 121, 121);
+  margin-top: 1rem;
+}
+
 /* FOOTER START */
 footer {
   position: absolute;
@@ -10,54 +17,14 @@ footer {
   line-height: 5rem;
   display: flex;
   justify-content: space-between;
+  font-size: 1.25rem;
 }
 footer ul {
   margin-left: 1.5rem;
 }
 
-.icon {
-  text-decoration: none;
+.copyright {
+  margin-right: 2rem;
 }
-
-  .icon:before {
-    display: inline-block;
-    font-family: FontAwesome;
-    font-size: 1.25em;
-    text-decoration: none;
-    font-style: normal;
-    font-weight: normal;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  .icon > .label {
-    display: none;
-  }
-
-ul.icons {
-  line-height: 5rem;
-  cursor: default;
-  list-style: none;
-  padding-left: 0;
-}
-
-  ul.icons li {
-    display: inline-block;
-    padding-left: 0;
-  }
-
-  ul.icons a {
-    color: #dddfe0;
-    display: inline-block;
-    width: 2em;
-    height: 2em;
-    line-height: 2em;
-    text-align: center;
-    border: 0;
-  }
-  .copyright {
-    margin-right: 2rem;
-  }
 
 /* FOOTER END */

@@ -15,11 +15,11 @@ const Callback = {};
 function Asteroid (asteroid){
   this.date = asteroid.close_approach_data[0].close_approach_date;
   this.link = asteroid.nasa_jpl_url+';old=0;orb=1;cov=0;log=0;cad=0#orb';
-  this.meters = asteroid.estimated_diameter.meters.estimated_diameter_max;
-  this.feet = asteroid.estimated_diameter.feet.estimated_diameter_max;
+  this.meters = Math.round(asteroid.estimated_diameter.meters.estimated_diameter_max);
+  this.feet = Math.round(asteroid.estimated_diameter.feet.estimated_diameter_max);
   this.hazardous = asteroid.is_potentially_hazardous_asteroid;
-  this.kmh = asteroid.close_approach_data[0].relative_velocity.kilometers_per_hour;
-  this.mph = asteroid.close_approach_data[0].relative_velocity.miles_per_hour;
+  this.kmh = Math.round(asteroid.close_approach_data[0].relative_velocity.kilometers_per_hour);
+  this.mph = Math.round(asteroid.close_approach_data[0].relative_velocity.miles_per_hour);
 }
 
 // NASA API call

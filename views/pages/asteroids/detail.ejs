@@ -1,13 +1,11 @@
 <div class="asteroid flex-column">
-    <h3> <%= asteroid.date; %> </h3>
-    <h4> <%= asteroid.link; %> </h4>
-    <p><%= asteroid.meters; %> </p>
+  <h3> <span class="show">Date: </span><%= asteroid.date; %> </h3>
+  <h4> <span class="show">Diameter: </span><%= asteroid.meters; %> meters (<%= asteroid.feet; %> feet)  </h4>
+  <p> <span class="show">Hazardous: </span><%= asteroid.hazardous; %> </p>
     <% if(show) { %>
-      <p>Diameter meters: <%= asteroid.meters; %> </p>
-      <p> Diameter feet: <%= asteroid.feet; %> </p>
-      <p>Hazardous: <%= asteroid.hazardous; %> </p>
-      <p> Speed kmh: <%= asteroid.kmh; %> </p>
-      <p>Speed mph: <%= asteroid.mph; %> </p>
+      <p><span class="show">Link: </span> <%= asteroid.link; %> </p>
+      <p> <span class="show"> Kmh: </span><%= asteroid.kmh; %> </p>
+      <p><span class="show">Mph: </span> <%= asteroid.mph; %> </p>
       <div class="flex-row">
         <button id="update" class="button narrow">Update Details</button>
         <form class="narrow" action="/asteroids/<%= asteroid.id %>" method="POST">
