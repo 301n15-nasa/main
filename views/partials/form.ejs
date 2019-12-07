@@ -1,14 +1,18 @@
 <form class="edit-form flex-column" action= <%= type === 'update' ? `/asteroids/${asteroid.id}` : '/asteroids/' %> method="POST">
   <input type="hidden" name="_method" value="<%= type === 'update' ? 'put' : 'post' %>">
   <input type="hidden" name="id" value="<%= asteroid.id %>">
+  <input type="hidden" name="date" placeholder="Date" value="<%= asteroid.date %>" required>
+  <input type="hidden" name="link" placeholder="Link" value="<%= asteroid.link %>" required>
+  <input type="hidden" name="meters" placeholder="meters" value="<%= asteroid.meters %>" required>
+  <input type="hidden" name="feet" placeholder="feet" value="<%= asteroid.feet %>" required>
+  <input type="hidden" name="hazardous" placeholder="hazardous" value="<%= asteroid.hazardous %>" required>
+  <input type="hidden" name="kmh" placeholder="kmh" value="<%= asteroid.kmh %>" required>
+  <input type="hidden" name="mph" placeholder="mph" value="<%= asteroid.mph %>" required>
+  <input type="hidden" name="miss_au" placeholder="miss_au" value="<%= asteroid.miss_au %>" required>
+  <input type="hidden" name="miss_km" placeholder="miss_km" value="<%= asteroid.miss_km %>" required>
+  <input type="hidden" name="miss_mi" placeholder="miss_mi" value="<%= asteroid.miss_mi %>" required>
   <div>
-    Date: <input type="text" name="date" placeholder="Date" value="<%= asteroid.date %>" required>
-    Link: <input type="text" name="link" placeholder="Link" value="<%= asteroid.link %>" required>
-    Diameter(meters):<input type="text" name="meters" placeholder="meters" value="<%= asteroid.meters %>" required>
-    Diameter(feet): <input type="text" name="feet" placeholder="feet" value="<%= asteroid.feet %>" required>
-    Hazardous: <input type="text" name="hazardous" placeholder="hazardous" value="<%= asteroid.hazardous %>" required>
-    Kmh: <input type="text" name="kmh" placeholder="kmh" value="<%= asteroid.kmh %>" required>
-    Mph: <input type="text" name="mph" placeholder="mph" value="<%= asteroid.mph %>" required>
+    Name: <input type="text" name="name" placeholder="Name the asteroid" value="" required>
   </div>
   <button type="submit" class="button narrow"> <%= type === 'search' ?'Add to Database' : 'Update Data' %></button>
 </form>
