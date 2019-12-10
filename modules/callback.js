@@ -25,6 +25,30 @@ function Asteroid (asteroid){
   this.miss_distance_mi = Math.round(asteroid.close_approach_data[0].miss_distance.miles);
 }
 
+// Meteor Constructor function
+function Meteor (meteor){
+  this.date = meteor[0];
+  this.energy = meteor[1];
+  this.lat = meteor[4]="N" ? meteor[3] : `-${meteor[3]}`;
+  this.lon = meteor[6]="E" ? meteor[5] : `-${meteor[5]}`;
+}
+
+Callback.buildIndex = async function buildIndex(req,res){
+  let asteroidArray = await Callback.showSavedAsteroids(req,res);
+  let meteorArray = await Callback.searchMeteor(req);
+  let output = {sqlResults:asteroidArray,meteorResults:meteorArray};
+  res.render('pages/index',{sqlResults:output.sqlResults});
+}
+
+Callback.searchMeteor = async function searchMeteor(req,res){
+  let url = `https://ssd-api.jpl.nasa.gov/fireball.api?limit=20`;
+  let result = await superagent.get(url);
+  let meteorArray = [];
+  let tempArr = result.body.data.forEach(meteor => new Meteor(meteor));
+  console.log(tempArr);
+  return meteorArray;
+}
+
 // NASA API call
 Callback.searchApi = async function searchApi(req, res){
   let url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${req.body.startdate}&end_date=${req.body.enddate}&api_key=${process.env.ASTEROID_KEY}`;
@@ -49,7 +73,7 @@ Callback.showSavedAsteroids = async function showSavedAsteroids(req, res) {
   let sql = 'SELECT * FROM asteroid;';
   try {
     let result = await client.query(sql);
-    res.status(200).render('pages/index', { sqlResults: result.rows });
+    return result.rows;
   } catch(err) {
     errorHandler(err, req, res);
   }

@@ -31,9 +31,10 @@ const showAsteroidDetails = Callback.showAsteroidDetails;
 const saveToDatabase = Callback.saveToDatabase;
 const updateAsteroidDetails = Callback.updateAsteroidDetails;
 const deleteAsteroid = Callback.deleteAsteroid;
+const buildIndex = Callback.buildIndex;
 
 // Routs
-app.get('/', showSavedAsteroids);
+app.get('/', buildIndex);
 app.get('/searches', (req, res) => {
   res.status(200).render('pages/searches/new');
 });
