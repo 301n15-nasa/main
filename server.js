@@ -34,6 +34,9 @@ const deleteAsteroid = Callback.deleteAsteroid;
 
 // Routs
 app.get('/', showSavedAsteroids);
+app.get('/about', (request, response) => {
+  response.render('pages/about');
+});
 app.get('/searches', (req, res) => {
   res.status(200).render('pages/searches/new');
 });

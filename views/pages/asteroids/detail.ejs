@@ -7,15 +7,15 @@
       <p> <span class="show"> Kmh: </span><%= asteroid.kmh; %> </p>
       <p><span class="show">Mph: </span> <%= asteroid.mph; %> </p>
       <div class="flex-row">
-        <button id="update" class="button narrow">Update Details</button>
+        <button id="update" class="button">Update</button>
         <form class="narrow" action="/asteroids/<%= asteroid.id %>" method="POST">
           <input type="hidden" name="_method" value="delete">
           <input type="hidden" name="id" value=" <%= asteroid.id %>">
-          <button id="delete" class="button">Delete Asteroid</button>
+          <button id="delete" class="button">Delete</button>
         </form>
       </div>
     <% } else { %>
-      <a href="/asteroids/<%= asteroid.id %>"><button class="button">View Details</button></a>
+      <a href="/asteroids/<%= asteroid.id %>"><button class="button details">Details</button></a>
     <% } %>
   </div>
   

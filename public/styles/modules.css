@@ -4,13 +4,22 @@ h2 {
   margin-top: 1rem;
   color: rgb(121, 121, 121);
 }
+
+h2:after{
+  display: block;
+  height: 2px;
+  background-color:  #3498db;
+  content: " ";
+  width: 6.25rem;
+  margin: 0 auto;
+  margin-top: 1.2rem;
+  margin-bottom: 1rem;
+}
 /* Logo */
 .logo{
   width: 100%;
-  background-image: radial-gradient(#0068b8,#3fabfd);
   color: white;
   height: 5rem;
-  text-align: center;
 }
 .logo a {
   text-decoration: none;
@@ -24,21 +33,23 @@ h2 {
 .nav {
 	height: 100%;
   width: 0;
+  left: 100%;
+  right: 0;
 	position: fixed;
 	z-index: 20;
 	top: 0;
-	left: 0;
 	background-color: #bdc3c7;
 	overflow-x: hidden;
 	padding-top: 3.75rem;
   transition: 0.7s;
 }
 .transform {
-  width: 15rem;
+  left: 50%;
+  width: 50%;
 }
 
 .open{
-  margin-left: 15rem;
+  margin-right: 50%;
 }
 .nav a.item {
 	display: flex;
@@ -64,8 +75,8 @@ h2 {
   width: 3.2rem;
   height: 2.5rem;
   position: fixed;
-  top:1.25rem;
-  left: 1rem;
+  top:1rem;
+  right: 1rem;
   transform: rotate(0deg);
   transition: .5s ease-in-out;
   cursor: pointer;
@@ -130,14 +141,13 @@ form {
   align-items: center;
   margin: 0 2rem;
 }
-
 .edit-form{
   width: 85%;
   margin: auto;
 }
 form > input {
   box-sizing: border-box;
-  width: 30%;
+  width: 90%;
   height: 3.5rem;
   margin-top: 1rem;
   border-radius: 5px;
@@ -169,6 +179,11 @@ button{
   border: 2px solid #3fabfd;
   transition: background-color .5s, border .5s, color .5s;
 }
+.details, #update, #delete{
+  width: 8rem;
+  padding: .8rem 1.8rem;
+  text-align: center;
+}
 
 /* MODAL START */
 .modal {
@@ -184,7 +199,7 @@ button{
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 .modal .asteroid {
-  width: 40%;
+  width: 90%;
   margin: auto;
 }
 /* MODAL END */
@@ -197,27 +212,26 @@ button{
 }
 .asteroid {
   color: rgb(121, 121, 121);
-  width: 30%;
+  width: 96%;
   background: #e0dfdf;
-  margin: 1rem;
+  margin: 4%;
   padding: 2rem 1.5rem;
   border-radius: 3px;
   font-size: 1.1rem;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.6);
   text-align: center;
   line-height: 1.3;
+  font-size: 130%;
 }
 
 .flex-row {
   text-align: center;
 }
-.asteroid button {
-  padding: .8rem 2rem;
-}
 
 .show > .asteroid {
   margin: 1rem auto;
-  width: 40%;
+  width: 90%;
+  font-size: 115%;
 }
 /* footer elements */
 
@@ -255,9 +269,207 @@ ul.icons {
   ul.icons a {
     color: #dddfe0;
     display: inline-block;
-    width: 2em;
-    height: 2em;
+    width: 1.5rem;
+    height: 1.5rem;
     line-height: 2em;
     text-align: center;
     border: 0;
   }
+span.show {
+  color: #27ae60;
+}
+
+/* about us section */
+.about_us .row {
+  width: 95%;
+  border: 2px solid #3498db;
+  border-radius: 7px;
+  margin: 3rem auto;
+  line-height: 1.2;
+  background-color: #e0dfdf;
+  padding: 10px;
+  font-size: 130%;
+}
+
+.about_us h3{
+  font-size: 140%;
+  font-weight: bold;
+}
+.our-team {
+  color: #dfe6e9;
+  margin-top: 25px;
+}
+
+.author-nfo {
+  display: flex;
+  width: 100%;
+}
+.photo-social {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  width: 21%;
+}
+.photo {
+  margin-bottom: 7px;
+  margin-left: 5px;
+}
+.photo img {
+  border-radius: 50%;
+  width: 100%;
+  border: 2px solid #3498db;
+}
+
+.social {
+  display: flex;
+  justify-content: flex-end;
+}
+.social a{
+  border: none;
+}
+
+.social img{
+  width: 60%;
+  margin: .3125rem;
+  transition: transform 0.3s;
+} 
+
+.social img:hover {
+  transform: scale(1.2);
+}
+
+.about-author{
+  float: left;
+  width: 70%;
+  margin-top: 5px;
+  color: rgb(121, 121, 121);;
+  text-indent: 20px;
+  text-align: justify;
+}
+
+.about-author h3 {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+@media screen and (min-width: 601px) and (max-width: 735px) {
+  form > input {
+    width: 85%;
+    margin: 0 7.5%;
+  }
+  .show > .asteroid {
+    margin: 1rem auto;
+    width: 85%;
+    font-size: 120%;
+  }
+  .about_us .row {
+    width: 85%;
+  }
+}
+
+@media screen and (min-width: 736px) and (max-width: 960px) {
+
+  ul.icons a {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .asteroid {
+    width: 48%;
+    margin: 1%;
+  }
+  form > input{
+    width: 50%;
+    margin: 1% 20%;
+  }
+  .show > .asteroid {
+    margin: 1rem auto;
+    width: 70%;
+    font-size: 130%;
+  }
+
+  .about_us .row {
+    width: 75%;
+  }
+}
+
+@media screen and (min-width: 961px) {
+
+  .logo{
+    width: 50%;
+  }
+  nav {
+    width: 50%;
+  }
+  .nav{
+    display: flex;
+    justify-content: space-around;
+    height: 100%;
+    width: 100%;
+    left: 100%;
+    right: 0;
+    position: static;
+    z-index: auto;
+    top: 0;
+    background-color: transparent;
+    overflow-x: hidden;
+    padding-top: 0;
+    transition: 0.7s;
+  }  
+  .nav a.item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    font-size: 1.3rem;
+    text-decoration: none;
+    color: rgb(216, 216, 216);
+    background-color: transparent;
+    border-top: none;
+  }
+  .nav .last {
+    border-bottom: none;
+  }
+
+  .nav .icon {
+    display: none;
+  }
+  #nav-icon3 {
+    display: none;
+  }
+  
+  .asteroid{
+    width:31.33%;
+    margin: 1%;
+  }
+
+  ul.icons a {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  /* form */
+
+  form {
+    margin: 0 2rem;
+  }
+  form > input {
+    width: 30%;
+  }
+
+  .modal .asteroid {
+    width: 50%;
+    margin: auto;
+  }
+/* item details */
+  .show > .asteroid {
+    margin: 1rem auto;
+    width: 50%;
+    font-size: 140%;
+  }
+
+  /* about us */
+
+  .about_us .row {
+    width: 60%;
+  }
+}

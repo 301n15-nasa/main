@@ -30,5 +30,4 @@ const validateForm = () => {
   }
 };
 
-
 $('#new-search').on('submit', validateForm);
