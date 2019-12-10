@@ -1,11 +1,15 @@
 .nav a.item:hover {
 	color: #fff;
-	background-color: #3fabfd;
+	background-image: linear-gradient(to top,#0068b8 0,#65bcff);
 	transition: 0.4s;
 }
 
 button:hover {
   cursor: pointer;
-  background-color: #3fabfd;
+  background-image: linear-gradient(to top,#0068b8 0,#65bcff);
   color: white;
+}
+
+footer a:hover{
+color: white;
 }
