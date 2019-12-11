@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <%- include ('../../partials/head') %>
+  </head>
+  <body>
+    <header>
+      <%- include ('../../partials/header') %>
+    </header>
+    <h1>ASTEROIDS</h1>
+    <main>
+      <section class="asteroids">
+        <% results.forEach( asteroid => { %>
+          <div class="asteroid flex-column">
+            <h3> <span class="show">Date: </span><%= asteroid.date; %> </h3>
+            <h4> <span class="show">Diameter: </span><%= asteroid.meters; %> meters (<%= asteroid.feet; %> feet)  </h4>
+            <p> <span class="show">Hazardous: </span><%= asteroid.hazardous; %> </p>
+            <div class="modal">
+              <div class="asteroid">
+                <%- include('../../partials/form', { type: 'search', asteroid: asteroid}) %>
+              </div>
+            </div>
+          </div>
+        <% }); %>
+      </section>
+    </main>
+    <footer>
+        <%- include ('../../partials/footer') %>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
+    </script>
+    <script src="../../js/menu.js"></script>
+    <script src="../../js/app.js"></script>
+  </body>
+</html>

@@ -31,6 +31,7 @@ const showAsteroidDetails = Callback.showAsteroidDetails;
 const saveToDatabase = Callback.saveToDatabase;
 const updateAsteroidDetails = Callback.updateAsteroidDetails;
 const deleteAsteroid = Callback.deleteAsteroid;
+const closestToEarthToday = Callback.closestToEarthToday;
 
 // Routs
 app.get('/', showSavedAsteroids);
@@ -45,6 +46,8 @@ app.post('/asteroids', saveToDatabase);
 app.get('/asteroids/:asteroid_id', showAsteroidDetails);
 app.put('/asteroids/:asteroid_id', updateAsteroidDetails);
 app.delete('/asteroids/:asteroid_id', deleteAsteroid);
+//app.get('/today',closestToEarthToday);
+app.get('/',closestToEarthToday);
 
 app.get('*', (req, res) => res.status(404).render('pages/err/error404'));
 
