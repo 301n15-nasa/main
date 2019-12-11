@@ -31,6 +31,7 @@ const showAsteroidDetails = Callback.showAsteroidDetails;
 const saveToDatabase = Callback.saveToDatabase;
 const updateAsteroidDetails = Callback.updateAsteroidDetails;
 const deleteAsteroid = Callback.deleteAsteroid;
+const getImgOfDay = Callback.getImgOfDay;
 const closestToEarthToday = Callback.closestToEarthToday;
 
 // Routs
@@ -38,6 +39,7 @@ app.get('/', showSavedAsteroids);
 app.get('/about', (request, response) => {
   response.render('pages/about');
 });
+app.get('/nasa', getImgOfDay);
 app.get('/searches', (req, res) => {
   res.status(200).render('pages/searches/new');
 });

@@ -142,6 +142,26 @@ Callback.deleteAsteroid = async function deleteAsteroid(req, res) {
   }
 };
 
+
+// NASA image
+Callback.getImgOfDay = async function (req, res) {
+  let url = `https://api.nasa.gov/planetary/apod?api_key=${process.env.ASTEROID_KEY}`;
+  try {
+    let result = await superagent.get(url)
+    console.log(result.body)
+    let nasaObj = {};
+    nasaObj.copy_right = result.body.copy_right;
+    nasaObj.date = result.body.date;
+    nasaObj.explanation = result.body.explanation;
+    nasaObj.hdurl = result.body.hdurl;
+    nasaObj.title = result.body.title;
+    res.render('pages/nasa', {data: nasaObj});
+  } catch(err) {
+    errorHandler(err, req, res);
+  }
+}
+
+
 // Error handler
 function errorHandler(err, req, res) {
   res.status(500).render('pages/err/error500', {data: err});

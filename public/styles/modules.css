@@ -352,6 +352,44 @@ span.show {
   margin-bottom: 10px;
 }
 
+/* NASA IMG */
+.nasa {
+  width: 100%;
+}
+.nasa_img{
+  width: 100%;
+  color: rgb(94, 93, 93);
+  position: relative;
+  overflow: auto;
+}
+.nasa_img span {
+  color: #3498db;
+}
+#description {
+  display: none;
+  position: absolute;
+  overflow: auto;
+  background-color: #f4f4f4;
+  z-index: 5;
+  padding: .7rem;
+  border-radius: 1rem;
+  margin: 0 7.5% 0 7.5%;
+  text-indent: 1rem;
+  width: 85%;
+  text-align: justify;
+  line-height: 1.2;
+  font-family: Lato, san-serif;
+  font-size: 120%;
+}
+.date{
+  text-align: center;
+}
+.nasa_img img {
+  display: block;
+  margin: 0 auto 1rem auto;
+  width: 90%;
+  border-radius: 1rem;
+}
 @media screen and (min-width: 601px) and (max-width: 735px) {
   form > input {
     width: 85%;
@@ -453,7 +491,7 @@ span.show {
     margin: 0 2rem;
   }
   form > input {
-    width: 30%;
+    width: 50%;
   }
 
   .modal .asteroid {
@@ -473,3 +511,5 @@ span.show {
     width: 60%;
   }
 }
+
+
