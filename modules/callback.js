@@ -2,6 +2,13 @@
 
 const superagent = require('superagent');
 
+//Creating date
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0');
+var yyyy = today.getFullYear();
+today = yyyy + '-' + mm + '-' + dd;
+
 // Connecting to DB
 const pg = require('pg');
 const client = new pg.Client(process.env.DATABASE_URL);
@@ -43,13 +50,38 @@ Callback.searchApi = async function searchApi(req, res){
       errorHandler(`Something has gone amiss!`, req, res);
   }
 }
+Callback.closestToEarthToday= async function closestToEarthToday(req,res){
+  let url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${today}&end_date=${today}&api_key=${process.env.ASTEROID_KEY}`;
+  try{
+    console.log(req);
+    let result = await superagent.get(url);
+    let dates = Object.keys(result.body.near_earth_objects);
+    let asteroidArray = [];
+    dates.forEach(element => {
+      let tempArr = result.body.near_earth_objects[element].map(asteroid => new Asteroid(asteroid));
+      tempArr.forEach(element => asteroidArray.push(element));
+    }
+    );
+    //res.render('pages/searches/today', {results:asteroidArray});
+    //res.render('pages/index', {results:asteroidArray});
+    console.log("++++++++++++++++++++++++++++++++++")
+    console.log(asteroidArray)
+    return asteroidArray;
+  }
+  catch{
+    //if something goes wrong, say something.
+      errorHandler(`Something has gone amiss!`, req, res);
+  }
+}
 
 // Showing saved asteroid from database on page load
 Callback.showSavedAsteroids = async function showSavedAsteroids(req, res) {
   let sql = 'SELECT * FROM asteroid;';
   try {
     let result = await client.query(sql);
-    res.status(200).render('pages/index', { sqlResults: result.rows });
+    let resultToday = await Callback.closestToEarthToday(req,res)
+    console.log(typeof resultToday);
+    res.status(200).render('pages/index', { sqlResults: result.rows ,results: resultToday});
   } catch(err) {
     errorHandler(err, req, res);
   }
