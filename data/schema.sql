@@ -14,4 +14,4 @@ CREATE TABLE asteroid (
     miss_km text,
     miss_mi text
 );
-INSERT INTO asteroid (name, date, link, meters, feet, hazardous, kmh, mph) VALUES ('asteroid_name','asteroid_date', 'asteroid_link', 'asteroid_meters', 'asteroid_feet', true, 'asteroid_kmh', 'asteroid_mi','miss_au','miss_km','miss_mi');
+INSERT INTO asteroid (name, date, link, meters, feet, hazardous, kmh, mph, miss_au, miss_km, miss_mi) VALUES ('asteroid_name','asteroid_date', 'asteroid_link', 'asteroid_meters', 'asteroid_feet', true, 'asteroid_kmh', 'asteroid_mi','miss_au','miss_km','miss_mi');

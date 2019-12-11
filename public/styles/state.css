@@ -10,6 +10,10 @@ button:hover {
   color: white;
 }
 
+.nasa_img span:hover {
+color: #7ec7f8;
+cursor: pointer;
+}
 footer a:hover{
 color: white;
 }
