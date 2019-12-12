@@ -30,6 +30,17 @@
         </div>
       <% }); %>
     </section>
+    meteors
+    <section >
+      <% meteors.forEach( meteors => { %>
+        <div class="asteroid flex-column">
+          <h3> <span class="show">Date: </span><%= meteors.date; %> </h3>
+          <h4> <span class="show">Energy: </span><%= meteors.energy; %> kilotons</h4>
+          <p> <span class="show">Lat: </span><%= meteors.lat; %> </p>
+          <p> <span class="show">Lat: </span><%= meteors.lon; %> </p>
+        </div>
+      <% }); %>
+    </section>
   </main>
   <footer>
       <%- include ('../partials/footer') %>
