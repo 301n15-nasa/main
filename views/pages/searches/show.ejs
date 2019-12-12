@@ -14,9 +14,11 @@
         <% if(results) { %>
           <% results.forEach( asteroid => { %>
             <div class="asteroid flex-column">
-              <h3> <span class="show">Date: </span><%= asteroid.date; %> </h3>
+              <h3> <span class="show">Arrival Date: </span><%= asteroid.date; %> </h3>
               <h4> <span class="show">Diameter: </span><%= asteroid.meters; %> meters (<%= asteroid.feet; %> feet)  </h4>
+              <h4> <span class="show">miss distance: </span><%= asteroid.miss_distance_km; %> kilometers (<%= asteroid.miss_distance_km; %> miles)  </h4>
               <p> <span class="show">Hazardous: </span><%= asteroid.hazardous; %> </p>
+              <button><a href="<%= asteroid.link; %>" target="blank"> View orbit diagram</a></button>
               <button class="select button">Select</button>
               <div class="modal">
                 <div class="asteroid">
