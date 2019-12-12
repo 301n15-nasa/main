@@ -383,6 +383,7 @@ span.show {
 }
 .date{
   text-align: center;
+  font-weight: bold;
 }
 .nasa_img img {
   display: block;
@@ -390,6 +391,20 @@ span.show {
   width: 90%;
   border-radius: 1rem;
 }
+
+/* Google Map */
+.hide {
+  display: none;
+}
+.map {
+  width: 100%;
+}
+.map img{
+  display: block;
+  width: 75%;
+  margin: 1rem auto;
+}
+
 @media screen and (min-width: 601px) and (max-width: 735px) {
   form > input {
     width: 85%;

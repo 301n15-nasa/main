@@ -148,7 +148,6 @@ Callback.getImgOfDay = async function (req, res) {
   let url = `https://api.nasa.gov/planetary/apod?api_key=${process.env.ASTEROID_KEY}`;
   try {
     let result = await superagent.get(url)
-    console.log(result.body)
     let nasaObj = {};
     nasaObj.copy_right = result.body.copy_right;
     nasaObj.date = result.body.date;
@@ -161,6 +160,27 @@ Callback.getImgOfDay = async function (req, res) {
   }
 }
 
+// Location handler
+Callback.locationHandler = async function (req, res) {
+  const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${req.query.data}&key=${process.env.GEOCODE_API_KEY}`;
+  try {
+    let result = await superagent.get(url)
+    const geoData = result.body;
+    const location = (new Location(req.query.data, geoData));
+    res.status(200).send(location);
+  } catch (err) {
+    //some function or error message
+    errorHandler(err, req, res);
+  }
+}
+
+//Helper Funcitons for location
+function Location(city, geoData) {
+  this.search_query = city;
+  this.formatted_query = geoData.results[0].formatted_address;
+  this.latitude = geoData.results[0].geometry.location.lat;
+  this.longitude = geoData.results[0].geometry.location.lng;
+}
 
 // Error handler
 function errorHandler(err, req, res) {
