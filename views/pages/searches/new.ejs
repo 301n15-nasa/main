@@ -15,6 +15,15 @@
       <input  id="enddate" type="date" size="12" required pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="dd/mm/yyyy" name="enddate">
       <button type="submit">Search</button>
     </form>
+    <h2>Search for a location</h2>
+    <form id="search-form">
+      <input type="text" name="search" id="input-search" placeholder="Enter a location here" required> 
+      <button type="submit">Explore!</button>
+    </form>
+    <h2 class="query-placeholder"></h2>
+    <div class="map hide">
+      <img id="map" src="" alt="Map of search query">
+    </div>
   </main>
   <footer>
     <%- include ('../../partials/footer') %>
@@ -23,5 +32,6 @@
   </script>
   <script src="../../js/menu.js"></script>
   <script src="../../js/app.js"></script>
+  <script src="../../js/map.js"></script>
   </body>
 </html>

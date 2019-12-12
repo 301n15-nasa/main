@@ -33,13 +33,14 @@ const updateAsteroidDetails = Callback.updateAsteroidDetails;
 const deleteAsteroid = Callback.deleteAsteroid;
 const getImgOfDay = Callback.getImgOfDay;
 const closestToEarthToday = Callback.closestToEarthToday;
-
+const locationHandler = Callback.locationHandler;
 // Routs
 app.get('/', showSavedAsteroids);
 app.get('/about', (request, response) => {
   response.render('pages/about');
 });
 app.get('/nasa', getImgOfDay);
+app.get('/map', locationHandler);
 app.get('/searches', (req, res) => {
   res.status(200).render('pages/searches/new');
 });
@@ -52,5 +53,6 @@ app.delete('/asteroids/:asteroid_id', deleteAsteroid);
 app.get('/',closestToEarthToday);
 
 app.get('*', (req, res) => res.status(404).render('pages/err/error404'));
+
 
 app.listen(PORT, () => console.log(`server running up on port ${PORT}`));
