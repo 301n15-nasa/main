@@ -1,7 +1,7 @@
 h2 {
   text-align: center;
   font-size: 2rem;
-  margin-top: 1rem;
+  padding-top: 1rem;
   color: rgb(121, 121, 121);
 }
 
@@ -17,15 +17,10 @@ h2:after{
 }
 /* Logo */
 .logo{
-  width: 100%;
-  color: white;
-  height: 5rem;
+  width: 20%;
 }
-.logo a {
-  text-decoration: none;
-  color: white;
-  line-height: 5rem;
-  margin-left: 1.5rem;
+.logo img {
+  width: 100%;
 }
 
 /* --hamburger menu-- */
@@ -171,14 +166,17 @@ input {
 button{
   margin-top: 1.5rem;
   border-radius: 200px;
-  padding: .8rem 3rem;
+  padding: .8rem 2rem;
   font-weight: 300;
   font-size: 1.2rem;
-  color: rgb(143, 143, 143);
-  background-color: white;
-  border: 2px solid #3fabfd;
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
   transition: background-color .5s, border .5s, color .5s;
 }
+#new-search button, #search-form button {
+  background: linear-gradient(to top,#0068b8 0,#3fabfd);
+} 
 .details, #update, #delete{
   width: 8rem;
   padding: .8rem 1.8rem;
@@ -217,7 +215,7 @@ button{
   flex-wrap: wrap;
 }
 .asteroid {
-  color: rgb(121, 121, 121);
+  color: rgb(207, 207, 207);
   width: 96%;
   background: #e0dfdf;
   margin: 4%;
@@ -282,17 +280,18 @@ ul.icons {
     border: 0;
   }
 span.show {
-  color: #27ae60;
+  color: white;
 }
 
 /* about us section */
 .about_us .row {
   width: 95%;
-  border: 2px solid #3498db;
+  border: 2px solid rgb(238, 238, 238);
+  color: rgb(238, 238, 238);
   border-radius: 7px;
-  margin: 3rem auto;
+  margin: 3rem auto auto auto;
   line-height: 1.2;
-  background-color: #e0dfdf;
+  background: linear-gradient(to top,#005a9eec 0,#3090dae5);
   padding: 10px;
   font-size: 130%;
 }
@@ -323,7 +322,7 @@ span.show {
 .photo img {
   border-radius: 50%;
   width: 100%;
-  border: 2px solid #3498db;
+  border: 2px solid rgb(238, 238, 238);
 }
 
 .social {
@@ -338,6 +337,8 @@ span.show {
   width: 60%;
   margin: .3125rem;
   transition: transform 0.3s;
+  border-radius: 50%;
+  border: 2px solid rgb(199, 197, 197);
 } 
 
 .social img:hover {
@@ -348,7 +349,6 @@ span.show {
   float: left;
   width: 70%;
   margin-top: 5px;
-  color: rgb(121, 121, 121);;
   text-indent: 20px;
   text-align: justify;
 }
@@ -461,14 +461,21 @@ span.show {
 @media screen and (min-width: 961px) {
 
   .logo{
-    width: 50%;
+    width: 15%;
+  }
+  .logo img {
+    margin: 1rem;
+    width: 100%;
+    border-radius: 50%;
+    background-image: (rgba(28, 96, 160, 0.507), rgba(0, 0, 0, 0.774))
   }
   nav {
-    width: 50%;
+    height: 100%;
+    width: 100%;
   }
   .nav{
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
     height: 100%;
     width: 100%;
     left: 100%;
@@ -482,10 +489,12 @@ span.show {
     transition: 0.7s;
   }  
   .nav a.item {
+    font-family: Lato, san-serif;
     display: flex;
+    font-weight: 550;
     align-items: center;
     padding: 1rem;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     text-decoration: none;
     color: rgb(216, 216, 216);
     background-color: transparent;
@@ -503,6 +512,7 @@ span.show {
   }
   
   .asteroid{
+    background: linear-gradient(to top,#005a9e 0,#3090da);
     width:31.33%;
     margin: 1%;
   }
@@ -518,7 +528,7 @@ span.show {
     margin: 0 2rem;
   }
   form > input {
-    width: 50%;
+    width: 40%;
   }
 
   .modal .asteroid {
