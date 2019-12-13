@@ -42,7 +42,7 @@ Callback.closestToEarthToday= async function closestToEarthToday(req,res){
     let asteroidArray = [];
     dates.forEach(element => {
       let tempArr = result.body.near_earth_objects[element].map(asteroid => new Asteroid(asteroid));
-      tempArr.forEach(element => asteroidArray.push(element));
+       asteroidArray.push(tempArr[0]);
     }
     );
     //res.render('pages/searches/today', {results:asteroidArray});
