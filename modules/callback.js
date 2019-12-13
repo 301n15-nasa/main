@@ -22,9 +22,7 @@ Callback.buildIndex = async function buildIndex(req,res){
   let asteroidArray = await Callback.showSavedAsteroids(req,res);
   let findClosestAsteroids = await Callback.closestToEarthToday(req,res);
   let findMeteors = await Callback.searchMeteor('limit=20');
-  console.log('meteors:',findMeteors);
-  console.log('length',findMeteors.length);  
-  res.render('pages/index', { sqlResults: asteroidArray,results: findClosestAsteroids,meteors:findMeteors});
+  res.render('pages/index', { sqlResults: asteroidArray,results: findClosestAsteroids, meteors:findMeteors});
 }
 
 Callback.searchMeteor = async function searchMeteor(querystring){
@@ -175,7 +173,7 @@ Callback.locationHandler = async function (req, res) {
   }
 }
 
-//Helper Funcitons for location
+// Helper Funcitons for location
 function Location(city, geoData) {
   this.search_query = city;
   this.formatted_query = geoData.results[0].formatted_address;
@@ -211,3 +209,4 @@ function errorHandler(err, req, res) {
 
 // Exporting Callback object
 module.exports = Callback;
+
