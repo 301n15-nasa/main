@@ -33,22 +33,71 @@ function fetchCityData(event) {
     data: { data: searchQuery }
   })
     .then(location => {
+      console.log(location);
       displayMap(location);
     })
     .catch(error => { console.log(error);
     });
 }
 
-function displayMap(location) {
-  var marker = new google.maps.Marker({
-    map: map,
-    position: {lat: location.latitude, lng: location.longitude,},
+async function displayMap(location) {
+  let radius = parseInt($('#distance').val());
+  console.log(radius);
+  const URL = `https://data.nasa.gov/resource/gh4g-9sfh.json`;
+  const fetchResult = fetch(URL);
+  const response = await fetchResult;
+  const jsonData = await response.json();
+  let input = [location.latitude, location.longitude];
+  let filtered = jsonData.filter(el =>{if(el.geolocation !== undefined){return el;}}).filter( el => {
+    if(distance(input[0], parseInt(el.geolocation.latitude), input[1], parseInt(el.geolocation.longitude)) < radius){ return el;
+    }
   });
-  marker.setMap(map);
+  plotMarkers(filtered);
+
   // $('.map').removeClass('hide');
   $('.query-placeholder').text(`Here are the results for ${location.formatted_query}`);
-  // $('#map').attr('src', `https://maps.googleapis.com/maps/api/staticmap?center=${location.latitude}%2c%20${location.longitude}&zoom=3&size=600x300&markers=color:blue%7Clabel:S%7C${location.latitude},${location.longitude}&maptype=roadmap
-  // &key=AIzaSyDRqtaBHGSqzh7lUXPIQpryMqxZA-z25OI`);
+}
+
+var markers;
+var bounds;
+function plotMarkers(m)
+{
+  markers = [];
+  bounds = new google.maps.LatLngBounds();
+  m.forEach(function (marker) {
+    console.log(marker.geolocation);
+    var position = new google.maps.LatLng(parseInt(marker.geolocation.latitude), parseInt(marker.geolocation.longitude));
+
+    markers.push(
+      new google.maps.Marker({
+        position: position,
+        map: map,
+        animation: google.maps.Animation.DROP,
+      })
+    );
+
+    bounds.extend(position);
+  });
+
+  map.fitBounds(bounds);
+}
+
+function distance(input1, lat2, input2, lon2){
+  let lo1 = input1 * Math.PI / 180;
+  let lo2 = lon2 * Math.PI / 180; 
+  let la1 = input2 * Math.PI / 180;
+  let la2 = lat2 * Math.PI / 180; 
+
+  let dlon = lo2 - lo1; 
+  let dlat = la2 - la1;
+  let a = Math.sin(dlat / 2)**2 + Math.cos(la1) * Math.cos(la2) * Math.sin(dlon / 2)**2
+  
+  let c = 2 * Math.asin(Math.sqrt(a));
+   
+  let r = 6371;
+    
+  return(c * r) 
+
 }
 
 

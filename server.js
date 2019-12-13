@@ -49,7 +49,7 @@ app.post('/asteroids', saveToDatabase);
 app.get('/asteroids/:asteroid_id', showAsteroidDetails);
 app.put('/asteroids/:asteroid_id', updateAsteroidDetails);
 app.delete('/asteroids/:asteroid_id', deleteAsteroid);
-//app.get('/today',closestToEarthToday);
+app.get('/today', locationHandler);
 app.get('/',closestToEarthToday);
 
 app.get('*', (req, res) => res.status(404).render('pages/err/error404'));
