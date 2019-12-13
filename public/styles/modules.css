@@ -185,6 +185,12 @@ button{
   text-align: center;
 }
 
+#search-form label{
+  margin: .5rem;
+  color:rgb(121, 121, 121);
+  font-size: 120%;
+}
+
 /* MODAL START */
 .modal {
   display: none; 
