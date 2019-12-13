@@ -2,13 +2,19 @@ h1{
   text-align: center;
   font-size: 2.5rem;
   color: rgb(121, 121, 121);
-  margin-top: 1rem;
+  padding-top: 1rem;
 }
 
 /* header */
-header {
-  background-image: linear-gradient(to top,#0068b8 0,#3fabfd);
-  height: 5rem;
+.upper{
+  width: 100%;
+  height: 11rem;
+  background-image: url(../img/martin.jpg);
+}
+.lower {
+  background-image: linear-gradient(to right,#0c61a1 0,#1281d6);
+  height: 3rem;
+  border-bottom: 2px solid rgb(119, 119, 119);
 }
 /* FOOTER START */
 footer {
@@ -61,8 +67,10 @@ footer ul {
     margin-right: 2rem;
     font-size: 100%;
   }
-
-  header{
-  display: flex;
-  }
+}
+.about {
+  background-image: url(../img/about_us.jpg);
+  max-height: 100%;
+  background-size: cover;
+  background-position: center;
 }

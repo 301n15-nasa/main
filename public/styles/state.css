@@ -4,10 +4,9 @@
 	transition: 0.4s;
 }
 
-button:hover {
+button:hover, #new-search button:hover, #search-form button:hover  {
   cursor: pointer;
-  background-image: linear-gradient(to top,#0068b8 0,#65bcff);
-  color: white;
+  background-image: linear-gradient(to top,#1377c4 0,#58acec);
 }
 
 .nasa_img span:hover {

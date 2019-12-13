@@ -50,18 +50,18 @@ async function displayMap(location) {
   let input = [location.latitude, location.longitude];
   let filtered = jsonData.filter(el =>{if(el.geolocation !== undefined){return el;}}).filter( el => {
     if(distance(input[0], parseInt(el.geolocation.latitude), input[1], parseInt(el.geolocation.longitude)) < radius){ return el;
+    } else { $('.query-placeholder').text(`Here are No results for (${location.formatted_query})`);
     }
   });
   plotMarkers(filtered);
 
   // $('.map').removeClass('hide');
-  $('.query-placeholder').text(`Here are the results for ${location.formatted_query}`);
+  $('.query-placeholder').text(`Here are (${filtered.length}) results for ${location.formatted_query}`);
 }
 
 var markers;
 var bounds;
-function plotMarkers(m)
-{
+function plotMarkers(m) {
   markers = [];
   bounds = new google.maps.LatLngBounds();
   m.forEach(function (marker) {
@@ -72,10 +72,13 @@ function plotMarkers(m)
       new google.maps.Marker({
         position: position,
         map: map,
+        title: `Name: ${marker.name} date: ${marker.year.slice(0, 10)} mass: ${(marker.mass/453.59).toFixed(2)}lb`,
         animation: google.maps.Animation.DROP,
       })
     );
-
+    var infowindow = new google.maps.InfoWindow({
+	    content: marker.name,
+    });
     bounds.extend(position);
   });
 
