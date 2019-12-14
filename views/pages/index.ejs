@@ -21,6 +21,9 @@
           <h3> No asteroid found. Please refine search criteria and <a href="./">try again</a> </h3>
         </div>
       <% }; %>
+    </section>
+    <h2>20 upcoming asteroids</h2>
+    <section class="asteroids">
       <% results.forEach( asteroid => { %>
         <div class="asteroid flex-column">
             <p>Asteroid closest to the Earth today</p>
@@ -32,13 +35,13 @@
         </div>
       <% }); %>
     </section>
-    <section >
-    </section>
-    <button id="show-asteroids">Show latest meteor impacts</button>
+    <section>
+     <button id="show-asteroids">Show latest meteor impacts</button>
     <div class="map hide">
-      <img id="map" src="" alt="Map of search query">
+     <img id="map" src="" alt="Map of search query">
     </div>
     <div id="google"> </div>
+    </section>
   </main>
   <footer>
       <%- include ('../partials/footer') %>
