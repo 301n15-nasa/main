@@ -37,7 +37,6 @@ Callback.searchMeteor = async function searchMeteor(req,res){
 Callback.closestToEarthToday= async function closestToEarthToday(req,res){
   let url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${today}&end_date=${today}&api_key=${process.env.ASTEROID_KEY}`;
   try{
-    console.log(req);
     let result = await superagent.get(url);
     let dates = Object.keys(result.body.near_earth_objects);
     let asteroidArray = [];
@@ -48,8 +47,6 @@ Callback.closestToEarthToday= async function closestToEarthToday(req,res){
     );
     //res.render('pages/searches/today', {results:asteroidArray});
     //res.render('pages/index', {results:asteroidArray});
-    console.log("++++++++++++++++++++++++++++++++++")
-    console.log(asteroidArray)
     return asteroidArray;
   }
   catch{
@@ -101,7 +98,6 @@ Callback.showAsteroidDetails = async function showAsteroidDetails(req, res) {
 // Saving selected asteroid into database
 Callback.saveToDatabase = async function saveToDatabase(req, res) {
   const r = req.body;
-  console.log(req.body)
   let sql = 'INSERT INTO asteroid (name, date, link, meters, feet, hazardous, kmh, mph, miss_au, miss_km, miss_mi) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id;';
   try {
     let result = await client.query(sql, [r.name, r.date, r.link, r.meters, r.feet, r.hazardous, r.kmh, r.mph, r.miss_au, r.miss_km, r.miss_mi]);
@@ -109,7 +105,6 @@ Callback.saveToDatabase = async function saveToDatabase(req, res) {
     let id = result.rows[0].id;
     console.log(id);
     result = await client.query(sql, [id]);
-    console.log(result);
     res.status(200).redirect(`/asteroids/${result.rows[0].id}`);;
   } catch(err) {
     errorHandler(err, req, res);
@@ -122,7 +117,6 @@ Callback.updateAsteroidDetails = async function updateAsteroidDetails(req, res) 
   let sql = 'UPDATE asteroid SET name=$1, date=$2, link=$3, meters=$4, feet=$5, hazardous=$6, kmh=$7, mph=$8, miss_au=$9, miss_km=$10, miss_mi=$11 WHERE id=$12;';
   try {
     let result = await client.query(sql, [r.name, r.date, r.link, r.meters, r.feet, r.hazardous, r.kmh, r.mph, r.miss_au, r.miss_km, r.miss_mi, req.params.asteroid_id]);
-    console.log(result.rows[0]);
     res.status(200).redirect(`/asteroids/${req.params.asteroid_id}`);
   } catch(err) {
     errorHandler(err, req, res);

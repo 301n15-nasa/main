@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
   else
     lang = 'en';
 
-  var js_file = document.createElement('script');
+  let js_file = document.createElement('script');
   js_file.type = 'text/javascript';
   js_file.src = 'https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyDRqtaBHGSqzh7lUXPIQpryMqxZA-z25OI&language=' + lang;
   document.getElementsByTagName('head')[0].appendChild(js_file);
@@ -85,18 +85,18 @@ function plotMarkers(m) {
 }
 
 function distance(input1, lat2, input2, lon2){
-  let lo1 = input1 * Math.PI / 180;
+  let lo1 = input2 * Math.PI / 180;
   let lo2 = lon2 * Math.PI / 180; 
-  let la1 = input2 * Math.PI / 180;
+  let la1 = input1 * Math.PI / 180;
   let la2 = lat2 * Math.PI / 180; 
 
   let dlon = lo2 - lo1; 
   let dlat = la2 - la1;
-  let a = Math.sin(dlat / 2)**2 + Math.cos(la1) * Math.cos(la2) * Math.sin(dlon / 2)**2
+  let a = Math.pow(Math.sin(dlat / 2), 2)  + Math.cos(la1) * Math.cos(la2) * Math.pow(Math.sin(dlon / 2),2); 
   
   let c = 2 * Math.asin(Math.sqrt(a));
    
-  let r = 6371;
+  let r = 3956;
     
   return(c * r) 
 
