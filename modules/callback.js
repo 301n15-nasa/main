@@ -184,7 +184,7 @@ function Asteroid (asteroid){
   this.hazardous = asteroid.is_potentially_hazardous_asteroid;
   this.kmh = Math.round(asteroid.close_approach_data[0].relative_velocity.kilometers_per_hour);
   this.mph = Math.round(asteroid.close_approach_data[0].relative_velocity.miles_per_hour);
-  this.miss_distance_au = Math.round(asteroid.close_approach_data[0].miss_distance.astronomical);
+  this.miss_distance_au = asteroid.close_approach_data[0].miss_distance.astronomical.substring(0,4);
   this.miss_distance_km = Math.round(asteroid.close_approach_data[0].miss_distance.kilometers);
   this.miss_distance_mi = Math.round(asteroid.close_approach_data[0].miss_distance.miles);
 }

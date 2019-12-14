@@ -49,7 +49,7 @@ function plotMeteor(meteor) {
       content: 
       `<div>
         <p>Date/Time of impact: ${marker.date}</p>
-        <p>Impact energy: ${marker.energy} kilotons, or ${marker.energy/15} Hiroshima bombs</p>
+        <p>Impact energy: ${marker.energy} kilotons, or ${(marker.energy/15).toFixed(2)} Hiroshima bombs</p>
         <p>Latitude: ${marker.lat}</p>
         <p>Longitude: ${marker.lon}</p>
       </div>`
