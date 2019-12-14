@@ -187,13 +187,22 @@ button{
   border: 2px solid white;
   transition: background-color .5s, border .5s, color .5s;
 }
-#new-search button, #search-form button {
+#new-search button, #search-form button, #show-asteroids {
   background: linear-gradient(to top,#0068b8 0,#3fabfd);
 } 
+#show-asteroids{
+  display: block;
+  border: 1px solid #0061ac;
+  margin: 1rem auto;
+}
 .details, #update, #delete{
   width: 8rem;
-  padding: .8rem 1.8rem;
+  padding: .7rem 1.8rem;
   text-align: center;
+}
+
+.view_btn, .select {
+  width: 15rem;
 }
 
 #search-form label{
@@ -227,10 +236,14 @@ button{
   display: flex;
   flex-wrap: wrap;
 }
+.closest {
+  display: flex;
+  justify-content: center;
+}
 .asteroid {
-  color: rgb(207, 207, 207);
+  background: linear-gradient(to top,#005a9e 0,#3090da);
+  color: rgb(219, 219, 219);
   width: 96%;
-  background: #e0dfdf;
   margin: 4%;
   padding: 2rem 1.5rem;
   border-radius: 3px;
@@ -252,7 +265,7 @@ button{
 }
 .asteroid a {
   text-decoration: none;
-  color: rgb(207, 207, 207);
+  color:white;
 }
 /* footer elements */
 
@@ -439,6 +452,11 @@ span.show {
   margin: 1rem auto;
 }
 
+.latest_meteor {
+  padding-bottom: 1rem;
+  width: 100%;
+}
+
 @media screen and (min-width: 601px) and (max-width: 735px) {
   .logo {
     width: 25%;
@@ -451,6 +469,7 @@ span.show {
     margin: 0 7.5%;
   }
   .show > .asteroid {
+    background: linear-gradient(to top,#005a9e 0,#3090da);
     margin: 1rem auto;
     width: 85%;
     font-size: 120%;
@@ -487,6 +506,7 @@ span.show {
   }
 
   .asteroid {
+    background: linear-gradient(to top,#005a9e 0,#3090da);
     width: 48%;
     margin: 1%;
   }
@@ -495,6 +515,7 @@ span.show {
     margin: 1% 20%;
   }
   .show > .asteroid {
+    background: linear-gradient(to top,#005a9e 0,#3090da);
     margin: 1rem auto;
     width: 70%;
     font-size: 130%;
