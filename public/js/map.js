@@ -28,7 +28,7 @@ function fetchCityData(event) {
   event.preventDefault();
   let searchQuery = $('#input-search').val().toLowerCase();
   $.ajax({
-    url: `http://localhost:3000/map`,
+    url: `/map`,
     method: 'GET',
     data: { data: searchQuery }
   })
