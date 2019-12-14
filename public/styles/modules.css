@@ -36,7 +36,7 @@ h2:after{
 	background-color: #1281d6;
 	overflow-x: hidden;
 	padding-top: 3.75rem;
-  transition: 0.7s;
+  transition: 0.5s;
 }
 .transform {
   left: 50%;
@@ -265,7 +265,7 @@ button{
 }
 .asteroid a {
   text-decoration: none;
-  color:white;
+  color: rgb(219, 219, 219);
 }
 /* footer elements */
 
