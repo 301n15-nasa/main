@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-let map;
+var map;
 async function initMap()
 {
   map = new google.maps.Map(document.getElementById('google'), {
@@ -22,7 +22,6 @@ async function initMap()
     zoom: 3,
   });
 }
-
 
 function fetchCityData(event) {
   event.preventDefault();
@@ -102,6 +101,5 @@ function distance(input1, lat2, input2, lon2){
   return(c * r) 
 
 }
-
 
 $('#search-form').on('submit', fetchCityData);
