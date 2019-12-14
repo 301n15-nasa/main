@@ -12,9 +12,21 @@
   <input type="hidden" name="miss_km" placeholder="miss_km" value="<%= asteroid.miss_km %>" required>
   <input type="hidden" name="miss_mi" placeholder="miss_mi" value="<%= asteroid.miss_mi %>" required>
   <% if(type === 'update') { %>
-    Name: <input type="text" name="name" placeholder="Name the asteroid" value="<%= asteroid.name %>" required>
+    <p>Date of closest approach: <%= asteroid.date %></p>
+    <p><a href="<%= asteroid.link %>" target="blank">Orbit Diagram</a></p>
+    <p>Diameter: <%= asteroid.meters %> meters (<%= asteroid.feet %> feet)</p>
+    <p>Potentially Hazardous? <%= asteroid.hazardous %></p>
+    <p>Speed: <%= asteroid.kmh %> kmh (<%= asteroid.mph %> mph)</p>
+    <p>Closest approach: <%= asteroid.miss_au %> au (<%= asteroid.miss_km %> km or <%= asteroid.miss_mi %> mi)</p>
+    Name: <input type="text" name="name" placeholder="Name the asteroid" value="<%= asteroid.name %>" required>4
   <% } else { %>
-    <input type="text" name="name" placeholder="name" required>
+    <p>Date of closest approach: <%= asteroid.date %></p>
+    <p><a href="<%= asteroid.link %>" target="blank">Orbit Diagram</a></p>
+    <p>Diameter: <%= asteroid.meters %> meters (<%= asteroid.feet %> feet)</p>
+    <p>Potentially Hazardous? <%= asteroid.hazardous %></p>
+    <p>Speed: <%= asteroid.kmh %> kmh (<%= asteroid.mph %> mph)</p>
+    <p>Closest approach: <%= asteroid.miss_au %> au (<%= asteroid.miss_km %> km or <%= asteroid.miss_mi %> mi)</p>
+    Name: <input type="text" name="name" placeholder="Name the asteroid" required>
   <% } %>
   <button type="submit" class="button upd-del"> <%= type === 'search' ?'Add to Database' : 'Update' %></button>
 </form>
