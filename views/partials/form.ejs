@@ -13,7 +13,7 @@
   <input type="hidden" name="miss_mi" placeholder="miss_mi" value="<%= asteroid.miss_mi %>" required>
   <% if(type === 'update') { %>
     <p>Date of closest approach: <%= asteroid.date %></p>
-    <p><a href="<%= asteroid.link %>" target="blank">Orbit Diagram</a></p>
+    <p><a title="Click on me" href="<%= asteroid.link %>" target="blank">Orbit Diagram</a></p>
     <p>Diameter: <%= asteroid.meters %> meters (<%= asteroid.feet %> feet)</p>
     <p>Potentially Hazardous? <%= asteroid.hazardous %></p>
     <p>Speed: <%= asteroid.kmh %> kmh (<%= asteroid.mph %> mph)</p>
