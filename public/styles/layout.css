@@ -132,4 +132,20 @@ footer {
     height: 11rem;
     background-image: url(../img/martin_desk.jpg);
   }
+
+  footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    line-height: 5rem;
+  }
+  footer ul {
+    padding: 0;
+    margin-left: 2rem;
+  }
+
+  .copyright {
+    margin-right: 2rem;
+    font-size: 100%;
+  }
 }
