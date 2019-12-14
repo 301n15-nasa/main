@@ -198,8 +198,15 @@ function Asteroid (asteroid){
 function Meteor (meteor){
   this.date = meteor[0];
   this.energy = meteor[1];
-  this.lat = meteor[4]="N" ? meteor[3] : `-${meteor[3]}`;
-  this.lon = meteor[6]="E" ? meteor[5] : `-${meteor[5]}`;
+  if(meteor[4] === 'N'){
+    this.lat = meteor[3]
+  }else{
+    this.lat = '-'+meteor[3]
+  }
+  if(meteor[6] === 'E'){
+    this.lon = meteor[5]
+  }else{
+    this.lon = '-'+meteor[5]}
 }
 
 // Error handler
