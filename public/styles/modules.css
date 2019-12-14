@@ -267,6 +267,9 @@ button{
   text-decoration: none;
   color: rgb(219, 219, 219);
 }
+.view_btn a {
+  color: white;
+}
 /* footer elements */
 
 .icon {
