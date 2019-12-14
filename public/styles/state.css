@@ -1,13 +1,17 @@
-.nav a.item:hover {
+.nav a.item:hover, .asteroid a:hover {
 	color: #fff;
 	background-image: linear-gradient(to top,#0068b8 0,#65bcff);
 	transition: 0.4s;
 }
 
-button:hover {
+.logo img:hover{
+  transform: scale(1.1); 
+  transition: 0.5s;
+}
+
+button:hover, #new-search button:hover, #search-form button:hover  {
   cursor: pointer;
-  background-image: linear-gradient(to top,#0068b8 0,#65bcff);
-  color: white;
+  background-image: linear-gradient(to top,#1377c4 0,#58acec);
 }
 
 .nasa_img span:hover {

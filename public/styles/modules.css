@@ -1,7 +1,7 @@
 h2 {
   text-align: center;
   font-size: 2rem;
-  margin-top: 1rem;
+  padding-top: 1rem;
   color: rgb(121, 121, 121);
 }
 
@@ -17,15 +17,10 @@ h2:after{
 }
 /* Logo */
 .logo{
-  width: 100%;
-  color: white;
-  height: 5rem;
+  width: 35%;
 }
-.logo a {
-  text-decoration: none;
-  color: white;
-  line-height: 5rem;
-  margin-left: 1.5rem;
+.logo img {
+  width: 100%;
 }
 
 /* --hamburger menu-- */
@@ -38,7 +33,7 @@ h2:after{
 	position: fixed;
 	z-index: 20;
 	top: 0;
-	background-color: #bdc3c7;
+	background-color: #1281d6;
 	overflow-x: hidden;
 	padding-top: 3.75rem;
   transition: 0.7s;
@@ -55,7 +50,7 @@ h2:after{
 	display: flex;
 	flex-direction: row;
 	padding: 1.1rem 1.8rem;
-	font-size: 1.6rem;
+	font-size: 1.2rem;
 	text-decoration: none;
 	color: rgb(143, 143, 143);
 	background-color: white;
@@ -67,7 +62,7 @@ h2:after{
 
 .nav .icon {
   padding-right: .6rem;
-	font-size: 2.2rem;
+	font-size: 1.5rem;
 }
 
 #nav-icon3 {
@@ -134,6 +129,19 @@ h2:after{
 }
 
 /* --form-- */
+.upcoming{
+  background-color: rgb(235, 235, 235);
+  padding-bottom: .5rem;
+  border-bottom: 1px solid rgb(207, 207, 207);
+}
+.landed{
+  padding-bottom: .5rem;
+  border-bottom: 1px solid rgb(226, 226, 226);
+}
+.map_section{
+  padding-bottom: 1rem;
+  background-color:  rgb(252, 252, 252);
+}
 form {
   display: flex;
   flex-direction: column;
@@ -171,18 +179,27 @@ input {
 button{
   margin-top: 1.5rem;
   border-radius: 200px;
-  padding: .8rem 3rem;
+  padding: .8rem 2rem;
   font-weight: 300;
   font-size: 1.2rem;
-  color: rgb(143, 143, 143);
-  background-color: white;
-  border: 2px solid #3fabfd;
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
   transition: background-color .5s, border .5s, color .5s;
 }
+#new-search button, #search-form button {
+  background: linear-gradient(to top,#0068b8 0,#3fabfd);
+} 
 .details, #update, #delete{
   width: 8rem;
   padding: .8rem 1.8rem;
   text-align: center;
+}
+
+#search-form label{
+  margin: .5rem;
+  color:rgb(121, 121, 121);
+  font-size: 120%;
 }
 
 /* MODAL START */
@@ -211,7 +228,7 @@ button{
   flex-wrap: wrap;
 }
 .asteroid {
-  color: rgb(121, 121, 121);
+  color: rgb(207, 207, 207);
   width: 96%;
   background: #e0dfdf;
   margin: 4%;
@@ -232,6 +249,10 @@ button{
   margin: 1rem auto;
   width: 90%;
   font-size: 115%;
+}
+.asteroid a {
+  text-decoration: none;
+  color: rgb(207, 207, 207);
 }
 /* footer elements */
 
@@ -255,7 +276,6 @@ button{
   }
 
 ul.icons {
-  line-height: 5rem;
   cursor: default;
   list-style: none;
   padding-left: 0;
@@ -276,17 +296,21 @@ ul.icons {
     border: 0;
   }
 span.show {
-  color: #27ae60;
+  color: white;
 }
 
 /* about us section */
+.about h2 {
+  color: rgb(190, 190, 190);
+}
 .about_us .row {
   width: 95%;
-  border: 2px solid #3498db;
+  border: 2px solid rgb(238, 238, 238);
+  color: rgb(238, 238, 238);
   border-radius: 7px;
-  margin: 3rem auto;
+  margin: 3rem auto auto auto;
   line-height: 1.2;
-  background-color: #e0dfdf;
+  background: linear-gradient(to top,#005a9eec 0,#3090dae5);
   padding: 10px;
   font-size: 130%;
 }
@@ -317,7 +341,7 @@ span.show {
 .photo img {
   border-radius: 50%;
   width: 100%;
-  border: 2px solid #3498db;
+  border: 2px solid rgb(238, 238, 238);
 }
 
 .social {
@@ -332,6 +356,8 @@ span.show {
   width: 60%;
   margin: .3125rem;
   transition: transform 0.3s;
+  border-radius: 50%;
+  border: 2px solid rgb(199, 197, 197);
 } 
 
 .social img:hover {
@@ -342,7 +368,6 @@ span.show {
   float: left;
   width: 70%;
   margin-top: 5px;
-  color: rgb(121, 121, 121);;
   text-indent: 20px;
   text-align: justify;
 }
@@ -396,6 +421,15 @@ span.show {
 .hide {
   display: none;
 }
+.google_map {
+  width: 100%;
+}
+#google{
+  width: 80%;
+  height: 600px;
+  margin: 0 auto;
+  border-radius: 5px;
+}
 .map {
   width: 100%;
 }
@@ -406,6 +440,12 @@ span.show {
 }
 
 @media screen and (min-width: 601px) and (max-width: 735px) {
+  .logo {
+    width: 25%;
+  }
+  .logo img{
+    width: 100%;
+  }
   form > input {
     width: 85%;
     margin: 0 7.5%;
@@ -418,10 +458,23 @@ span.show {
   .about_us .row {
     width: 85%;
   }
+  ul.icons {
+    line-height: 5rem;
+  }
 }
 
 @media screen and (min-width: 736px) and (max-width: 960px) {
 
+  .logo {
+    width: 20%;
+  }
+  .logo img{
+    width: 100%;
+  }
+  
+  ul.icons {
+    line-height: 5rem;
+  }
   ul.icons a {
     width: 2rem;
     height: 2rem;
@@ -440,7 +493,6 @@ span.show {
     width: 70%;
     font-size: 130%;
   }
-
   .about_us .row {
     width: 75%;
   }
@@ -448,15 +500,19 @@ span.show {
 
 @media screen and (min-width: 961px) {
 
-  .logo{
-    width: 50%;
+  .logo {
+    width: 15%;
+  }
+  .logo img{
+    width: 100%;
   }
   nav {
-    width: 50%;
+    height: 100%;
+    width: 100%;
   }
   .nav{
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
     height: 100%;
     width: 100%;
     left: 100%;
@@ -470,10 +526,12 @@ span.show {
     transition: 0.7s;
   }  
   .nav a.item {
+    font-family: Lato, san-serif;
     display: flex;
+    font-weight: 550;
     align-items: center;
     padding: 1rem;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     text-decoration: none;
     color: rgb(216, 216, 216);
     background-color: transparent;
@@ -491,10 +549,13 @@ span.show {
   }
   
   .asteroid{
+    background: linear-gradient(to top,#005a9e 0,#3090da);
     width:31.33%;
     margin: 1%;
   }
-
+  footer ul {
+    line-height: 5rem;
+  }
   ul.icons a {
     width: 2rem;
     height: 2rem;
@@ -506,7 +567,7 @@ span.show {
     margin: 0 2rem;
   }
   form > input {
-    width: 50%;
+    width: 40%;
   }
 
   .modal .asteroid {

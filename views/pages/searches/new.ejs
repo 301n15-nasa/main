@@ -9,20 +9,32 @@
     <%- include ('../../partials/header') %>
   </header>
   <main>
-    <h2>Search by start/end date</h2>
-    <form id="new-search" action="/searches" method="POST">
-      <input id="startdate" type="date" size="12" required pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="dd/mm/yyyy" name="startdate">
-      <input  id="enddate" type="date" size="12" required pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="dd/mm/yyyy" name="enddate">
-      <button type="submit">Search</button>
-    </form>
-    <h2>Search for a location</h2>
-    <form id="search-form">
-      <input type="text" name="search" id="input-search" placeholder="Enter a location here" required> 
-      <button type="submit">Explore!</button>
-    </form>
-    <h2 class="query-placeholder"></h2>
-    <div class="map hide">
-      <img id="map" src="" alt="Map of search query">
+    <div class="upcoming">
+      <h2>Search for upcoming asteroids by start/end date</h2>
+      <form id="new-search" action="/searches" method="POST">
+        <input id="startdate" type="date" size="12" required pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="dd/mm/yyyy" name="startdate">
+        <input  id="enddate" type="date" size="12" required pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="dd/mm/yyyy" name="enddate">
+        <button type="submit">Search</button>
+      </form>
+    </div>
+    <div class="landed">
+      <h2>Search for landed asteroids</h2>
+      <form id="search-form">
+        <label for="input-search">Location</label>
+        <input type="text" name="search" id="input-search" placeholder="Enter a location here" required> 
+        <label for="distance">Distance</label>
+        <input type="number" name="search" id="distance" placeholder="Enter distance here" required> 
+        <button type="submit">Explore!</button>
+      </form>
+    </div>
+    <div class="map_section">
+      <h2 class="query-placeholder"></h2>
+      <div class="map hide">
+        <img id="map" src="" alt="Map of search query">
+      </div>
+      <div class="google_map">
+        <div id="google"> </div>
+      </div>
     </div>
   </main>
   <footer>
@@ -30,8 +42,8 @@
   </footer>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
   </script>
+   <script src="../../js/app.js"></script>
   <script src="../../js/menu.js"></script>
-  <script src="../../js/app.js"></script>
   <script src="../../js/map.js"></script>
   </body>
 </html>

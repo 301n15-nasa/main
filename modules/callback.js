@@ -18,19 +18,55 @@ client.on('error', err => errorHandler(err, req, res) );
 // Object for holding callback functions
 const Callback = {};
 
-// Constructor function 
-function Asteroid (asteroid){
-  this.date = asteroid.close_approach_data[0].close_approach_date;
-  this.link = asteroid.nasa_jpl_url+';old=0;orb=1;cov=0;log=0;cad=0#orb';
-  this.meters = Math.round(asteroid.estimated_diameter.meters.estimated_diameter_max);
-  this.feet = Math.round(asteroid.estimated_diameter.feet.estimated_diameter_max);
-  this.hazardous = asteroid.is_potentially_hazardous_asteroid;
-  this.kmh = Math.round(asteroid.close_approach_data[0].relative_velocity.kilometers_per_hour);
-  this.mph = Math.round(asteroid.close_approach_data[0].relative_velocity.miles_per_hour);
-  this.miss_distance_au = Math.round(asteroid.close_approach_data[0].miss_distance.astronomical);
-  this.miss_distance_km = Math.round(asteroid.close_approach_data[0].miss_distance.kilometers);
-  this.miss_distance_mi = Math.round(asteroid.close_approach_data[0].miss_distance.miles);
+Callback.buildIndex = async function buildIndex(req,res){
+  let asteroidArray = await Callback.showSavedAsteroids(req,res);
+  let findClosestAsteroids = await Callback.closestToEarthToday(req,res);
+  let findMeteors = await Callback.searchMeteor('limit=20');
+  res.render('pages/index', { sqlResults: asteroidArray,results: findClosestAsteroids, meteors:findMeteors});
 }
+
+Callback.searchMeteor = async function searchMeteor(querystring){
+  let url = `https://ssd-api.jpl.nasa.gov/fireball.api?${querystring}`;
+  return superagent.get(url)
+  .then(result => {
+  return result.body.data.map(meteor => new Meteor(meteor));
+  });
+}
+
+Callback.closestToEarthToday= async function closestToEarthToday(req,res){
+  let url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${today}&end_date=${today}&api_key=${process.env.ASTEROID_KEY}`;
+  try{
+    console.log(req);
+    let result = await superagent.get(url);
+    let dates = Object.keys(result.body.near_earth_objects);
+    let asteroidArray = [];
+    dates.forEach(element => {
+      let tempArr = result.body.near_earth_objects[element].map(asteroid => new Asteroid(asteroid));
+       asteroidArray.push(tempArr[0]);
+    }
+    );
+    //res.render('pages/searches/today', {results:asteroidArray});
+    //res.render('pages/index', {results:asteroidArray});
+    console.log("++++++++++++++++++++++++++++++++++")
+    console.log(asteroidArray)
+    return asteroidArray;
+  }
+  catch{
+    //if something goes wrong, say something.
+    errorHandler(`Something has gone amiss!`, req, res);
+  }
+}
+
+// Showing saved asteroid from database on page load
+Callback.showSavedAsteroids = async function showSavedAsteroids(req, res) {
+  let sql = 'SELECT * FROM asteroid;';
+  try {
+    let result = await client.query(sql);
+    return result.rows;
+  } catch(err) {
+    errorHandler(err, req, res);
+  }
+};
 
 // NASA API call
 Callback.searchApi = async function searchApi(req, res){
@@ -47,46 +83,9 @@ Callback.searchApi = async function searchApi(req, res){
   }
   catch{
     //if something goes wrong, say something.
-      errorHandler(`Something has gone amiss!`, req, res);
+    errorHandler(`Something has gone amiss!`, req, res);
   }
 }
-Callback.closestToEarthToday= async function closestToEarthToday(req,res){
-  let url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${today}&end_date=${today}&api_key=${process.env.ASTEROID_KEY}`;
-  try{
-    console.log(req);
-    let result = await superagent.get(url);
-    let dates = Object.keys(result.body.near_earth_objects);
-    let asteroidArray = [];
-    dates.forEach(element => {
-      let tempArr = result.body.near_earth_objects[element].map(asteroid => new Asteroid(asteroid));
-      tempArr.forEach(element => asteroidArray.push(element));
-    }
-    );
-    //res.render('pages/searches/today', {results:asteroidArray});
-    //res.render('pages/index', {results:asteroidArray});
-    console.log("++++++++++++++++++++++++++++++++++")
-    console.log(asteroidArray)
-    return asteroidArray;
-  }
-  catch{
-    //if something goes wrong, say something.
-      errorHandler(`Something has gone amiss!`, req, res);
-  }
-}
-
-// Showing saved asteroid from database on page load
-Callback.showSavedAsteroids = async function showSavedAsteroids(req, res) {
-  let sql = 'SELECT * FROM asteroid;';
-  try {
-    let result = await client.query(sql);
-    let resultToday = await Callback.closestToEarthToday(req,res)
-    console.log(typeof resultToday);
-    res.status(200).render('pages/index', { sqlResults: result.rows ,results: resultToday});
-  } catch(err) {
-    errorHandler(err, req, res);
-  }
-};
-
 // Show details
 Callback.showAsteroidDetails = async function showAsteroidDetails(req, res) {
   let sql = 'SELECT * FROM asteroid WHERE id=$1;';
@@ -174,12 +173,40 @@ Callback.locationHandler = async function (req, res) {
   }
 }
 
-//Helper Funcitons for location
+// Helper Funcitons for location
 function Location(city, geoData) {
   this.search_query = city;
   this.formatted_query = geoData.results[0].formatted_address;
   this.latitude = geoData.results[0].geometry.location.lat;
   this.longitude = geoData.results[0].geometry.location.lng;
+}
+// Asteroid constructor function
+function Asteroid (asteroid){
+  this.date = asteroid.close_approach_data[0].close_approach_date;
+  this.link = asteroid.nasa_jpl_url+';old=0;orb=1;cov=0;log=0;cad=0#orb';
+  this.meters = Math.round(asteroid.estimated_diameter.meters.estimated_diameter_max);
+  this.feet = Math.round(asteroid.estimated_diameter.feet.estimated_diameter_max);
+  this.hazardous = asteroid.is_potentially_hazardous_asteroid;
+  this.kmh = Math.round(asteroid.close_approach_data[0].relative_velocity.kilometers_per_hour);
+  this.mph = Math.round(asteroid.close_approach_data[0].relative_velocity.miles_per_hour);
+  this.miss_distance_au = Math.round(asteroid.close_approach_data[0].miss_distance.astronomical);
+  this.miss_distance_km = Math.round(asteroid.close_approach_data[0].miss_distance.kilometers);
+  this.miss_distance_mi = Math.round(asteroid.close_approach_data[0].miss_distance.miles);
+}
+
+// Meteor Constructor function
+function Meteor (meteor){
+  this.date = meteor[0];
+  this.energy = meteor[1];
+  if(meteor[4] === 'N'){
+    this.lat = meteor[3]
+  }else{
+    this.lat = '-'+meteor[3]
+  }
+  if(meteor[6] === 'E'){
+    this.lon = meteor[5]
+  }else{
+    this.lon = '-'+meteor[5]}
 }
 
 // Error handler
@@ -189,3 +216,4 @@ function errorHandler(err, req, res) {
 
 // Exporting Callback object
 module.exports = Callback;
+

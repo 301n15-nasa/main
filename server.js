@@ -26,7 +26,6 @@ app.use(methodOverride( (req, res) => {
 // Importing callback functions
 const Callback = require(path.join(__dirname, 'modules', 'callback.js'));
 const searchApi = Callback.searchApi;
-const showSavedAsteroids = Callback.showSavedAsteroids;
 const showAsteroidDetails = Callback.showAsteroidDetails;
 const saveToDatabase = Callback.saveToDatabase;
 const updateAsteroidDetails = Callback.updateAsteroidDetails;
@@ -34,8 +33,9 @@ const deleteAsteroid = Callback.deleteAsteroid;
 const getImgOfDay = Callback.getImgOfDay;
 const closestToEarthToday = Callback.closestToEarthToday;
 const locationHandler = Callback.locationHandler;
+const buildIndex = Callback.buildIndex;
 // Routs
-app.get('/', showSavedAsteroids);
+app.get('/', buildIndex);
 app.get('/about', (request, response) => {
   response.render('pages/about');
 });
@@ -49,7 +49,7 @@ app.post('/asteroids', saveToDatabase);
 app.get('/asteroids/:asteroid_id', showAsteroidDetails);
 app.put('/asteroids/:asteroid_id', updateAsteroidDetails);
 app.delete('/asteroids/:asteroid_id', deleteAsteroid);
-//app.get('/today',closestToEarthToday);
+app.get('/today', locationHandler);
 app.get('/',closestToEarthToday);
 
 app.get('*', (req, res) => res.status(404).render('pages/err/error404'));
