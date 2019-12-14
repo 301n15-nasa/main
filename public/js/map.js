@@ -41,7 +41,6 @@ function fetchCityData(event) {
 
 async function displayMap(location) {
   let radius = parseInt($('#distance').val());
-  console.log(radius);
   const URL = `https://data.nasa.gov/resource/gh4g-9sfh.json`;
   const fetchResult = fetch(URL);
   const response = await fetchResult;
