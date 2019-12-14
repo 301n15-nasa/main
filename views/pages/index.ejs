@@ -21,7 +21,8 @@
         </div>
       <% }; %>
     </section>
-    <section >
+    <h2>20 upcoming asteroids</h2>
+    <section class="asteroids">
       <% results.forEach( asteroid => { %>
         <div class="asteroid flex-column">
           <h3> <span class="show">Date: </span><%= asteroid.date; %> </h3>
@@ -30,9 +31,8 @@
         </div>
       <% }); %>
     </section>
-    meteors
-    <section >
-      <!-- meteors -->
+    <h2>20 recently landed meteors</h2>
+    <section class="asteroids">
       <% meteors.forEach( meteors => { %>
         <div class="asteroid flex-column">
           <h3> <span class="show">Date: </span><%= meteors.date; %> </h3>
