@@ -93,13 +93,13 @@ footer {
 
 }
 
-@media screen and (min-width: 961px) {
+@media screen and (min-width: 961px) and (max-width: 1200px) {
 
   /* header */
 .upper{
   width: 100%;
   height: 11rem;
-  background-image: url(../img/martin.jpg);
+  background-image: url(../img/martin_lap.jpg);
 }
 
   footer{
@@ -124,4 +124,12 @@ footer {
   background-size: cover;
   background-position: center;
   padding: 1.5rem 0;
+}
+
+@media screen and (min-width: 1200px) {
+  .upper{
+    width: 100%;
+    height: 11rem;
+    background-image: url(../img/martin_desk.jpg);
+  }
 }
