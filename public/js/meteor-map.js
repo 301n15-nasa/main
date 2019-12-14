@@ -45,13 +45,23 @@ function plotMeteor(meteor) {
   meteor.forEach(function (marker) {
     console.log(marker);
     var position = new google.maps.LatLng(parseInt(marker.lat), parseInt(marker.lon));
-
-    markers.push(
-      new google.maps.Marker({
-        position: position,
-        map: map
-      })
-    );
+    var infowindow = new google.maps.InfoWindow({
+      content: 
+      `<div>
+        <p>Date/Time of impact: ${marker.date}</p>
+        <p>Impact energy: ${marker.energy} kilotons, or ${marker.energy/15} Hiroshima bombs</p>
+        <p>Latitude: ${marker.lat}</p>
+        <p>Longitude: ${marker.lon}</p>
+      </div>`
+    });
+    var containerObj = new google.maps.Marker({
+      position: position,
+      map: map
+    });
+    containerObj.addListener('click', function() {
+      infowindow.open(map, containerObj);
+    });
+    markers.push(containerObj);
     bounds.extend(position);
   });
 }
