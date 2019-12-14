@@ -21,15 +21,16 @@ const Callback = {};
 Callback.buildIndex = async function buildIndex(req,res){
   let asteroidArray = await Callback.showSavedAsteroids(req,res);
   let findClosestAsteroids = await Callback.closestToEarthToday(req,res);
-  let findMeteors = await Callback.searchMeteor('limit=20');
-  res.render('pages/index', { sqlResults: asteroidArray,results: findClosestAsteroids, meteors:findMeteors});
+  res.render('pages/index', { sqlResults: asteroidArray,results: findClosestAsteroids});
 }
 
-Callback.searchMeteor = async function searchMeteor(querystring){
-  let url = `https://ssd-api.jpl.nasa.gov/fireball.api?${querystring}`;
-  return superagent.get(url)
+Callback.searchMeteor = async function searchMeteor(req,res){
+  console.log('searchMeteor fired');
+  let url = `https://ssd-api.jpl.nasa.gov/fireball.api?limit=20`;
+  superagent.get(url)
   .then(result => {
-  return result.body.data.map(meteor => new Meteor(meteor));
+  let meteors = result.body.data.map(meteor => new Meteor(meteor));
+  res.status(200).send(meteors);
   });
 }
 

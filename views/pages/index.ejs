@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <%- include ('../partials/head') %>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3RaEbEeqoYn-kQVZQPaeNHPQUr2-y36k"async defer></script>
   <title>NASA API</title>
 </head>
 <body>
@@ -23,28 +24,21 @@
       <% results.forEach( asteroid => { %>
         <div class="asteroid flex-column">
             <p>Asteroid closest to the Earth today</p>
-          <p><button class="show"><a href="<%= asteroid.link; %>" target="blank">View orbit diagram</a></button></p>
-          <h4> <span class="show">Diameter: </span><%= asteroid.meters; %> meters (<%= asteroid.feet; %> feet)  </h4>
-          <p> <span class="show">Speed:</span><%= asteroid.kmh; %> KMH (<%= asteroid.mph; %> MPH) </p>
-          <p> <span class="show">Miss distance: </span><%= asteroid.miss_distance_km; %> kilometers (<%= asteroid.miss_distance_km; %> miles) </p>
-          <p> <span class="show">Hazardous: </span><%= asteroid.hazardous; %> </p>
+            <h4> <span class="show">Diameter: </span><%= asteroid.meters; %> meters (<%= asteroid.feet; %> feet)  </h4>
+            <p> <span class="show">Speed:</span><%= asteroid.kmh; %> KMH (<%= asteroid.mph; %> MPH) </p>
+            <p> <span class="show">Miss distance: </span><%= asteroid.miss_distance_km; %> kilometers (<%= asteroid.miss_distance_km; %> miles) </p>
+            <p> <span class="show">Hazardous: </span><%= asteroid.hazardous; %> </p>
+            <p><button class="show"><a href="<%= asteroid.link; %>" target="blank">View orbit diagram</a></button></p>
         </div>
       <% }); %>
     </section>
     <section >
     </section>
-    meteors
-    <section >
-      <!-- meteors -->
-      <% meteors.forEach( meteors => { %>
-        <div class="asteroid flex-column">
-          <h3> <span class="show">Date of Impact: </span><%= meteors.date; %> </h3>
-          <h4> <span class="show">Impact Energy: </span><%= meteors.energy; %> kilotons</h4>
-          <p> <span class="show">Lat: </span><%= meteors.lat; %> </p>
-          <p> <span class="show">Lat: </span><%= meteors.lon; %> </p>
-        </div>
-      <% }); %>
-    </section>
+    <button id="show-asteroids">Show latest meteor impacts</button>
+    <div class="map hide">
+      <img id="map" src="" alt="Map of search query">
+    </div>
+    <div id="google"> </div>
   </main>
   <footer>
       <%- include ('../partials/footer') %>
@@ -53,5 +47,6 @@
   </script>
   <script src="../../js/menu.js"></script>
   <script src="../../js/app.js"></script>
+  <script src="../../js/meteor-map.js"></script>
 </body>
 </html>

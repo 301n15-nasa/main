@@ -34,6 +34,7 @@ const getImgOfDay = Callback.getImgOfDay;
 const closestToEarthToday = Callback.closestToEarthToday;
 const locationHandler = Callback.locationHandler;
 const buildIndex = Callback.buildIndex;
+const searchMeteor = Callback.searchMeteor;
 // Routs
 app.get('/', buildIndex);
 app.get('/about', (request, response) => {
@@ -51,6 +52,7 @@ app.put('/asteroids/:asteroid_id', updateAsteroidDetails);
 app.delete('/asteroids/:asteroid_id', deleteAsteroid);
 app.get('/today', locationHandler);
 app.get('/',closestToEarthToday);
+app.get('/meteors',searchMeteor);
 
 app.get('*', (req, res) => res.status(404).render('pages/err/error404'));
 
