@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   let js_file = document.createElement('script');
   js_file.type = 'text/javascript';
-  js_file.src = 'https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyDRqtaBHGSqzh7lUXPIQpryMqxZA-z25OI&language=' + lang;
+  js_file.src = 'https://maps.googleapis.com/maps/api/js?callback=initMap&key=123&language=' + lang;
   document.getElementsByTagName('head')[0].appendChild(js_file);
   }
 });
